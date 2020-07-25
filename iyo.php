@@ -37,7 +37,7 @@ if(!isset($rec['gmail'])) {
     $stmt->BindValue(':gmail',$gmail);
     $stmt->BindValue(':netpass',$netpass);
     $stmt->execute();
-    $smg = '登録が完了しました.';
+    $smg = '登録が完了しましたs.';
     $link = '<a href="top.php">トップページ</a>';
 } 
 else 
