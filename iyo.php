@@ -7,11 +7,11 @@
 <body>
 <div class="container">
 <?php 
-$userid = filter_input(INPUT_POST, 'userid');
+$user_name = filter_input(INPUT_POST, 'user_name');
 $gmail = filter_input(INPUT_POST, 'gmail', FILTER_VALIDATE_EMAIL);
 $netpass = filter_input(INPUT_POST, 'netpass');
 
-$userid = htmlspecialchars($userid);
+$user_name = htmlspecialchars($user_name);
 $gmail = htmlspecialchars($gmail);
 $netpass = htmlspecialchars($netpass);
 
@@ -31,9 +31,9 @@ $stmt->execute();
 $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if(!isset($rec['gmail'])) {  
-    $sql = 'INSERT INTO loguin (userid,gmail,netpass) VALUES (:userid, :gmail, :netpass)';
+    $sql = 'INSERT INTO loguin (user_name,gmail,netpass) VALUES (:user_name, :gmail, :netpass)';
     $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':userid',$userid);
+    $stmt->BindValue(':user_name',$user_name);
     $stmt->BindValue(':gmail',$gmail);
     $stmt->BindValue(':netpass',$netpass);
     $stmt->execute();

@@ -1,8 +1,10 @@
 body {
-   margin: 0;
+   margin: 0 auto;
    background: skyblue;
 }
-
+#whole {
+    background: #fff;
+}
 .con {
     height: 850px;
     padding: 32px;
@@ -26,9 +28,7 @@ body {
 .message li + li {
     margin-top: 32px;
 }
-.bms {
-    
-}
+
 
 li.right-side {
     flex-direction: row-reverse;
@@ -38,11 +38,13 @@ li.right-side {
     width: 80px;
     text-align: center;
 }
+
 .pic img {
     width: 48px;
     height: 48px;
     border-radius: 50%;
 }
+
 .text {
     background: #fff;
     border-radius: 8px;
@@ -75,19 +77,24 @@ li.right-side {
 }
 
 /* 送信欄 */
+#sub {
+
+}
 #form {
+    position: relative;
+    margin: auto;
     height: 48px;
-    padding: 4px;
-    width: 100%;
+    padding: 4px;  
     
 }
 
 #sent_message {
     position: fixed;
+    margin: auto;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    width: calc( 100% - 85px );
+    width: 50%;
     line-height: 16px;
     height: 48px;
     padding: 14px 6px 0px 6px;
@@ -96,19 +103,17 @@ li.right-side {
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.5) inset;
     box-sizing: border-box;
     border-radius: 5px;
-    z-index: 5;
-    float: left;
-    
+    z-index: 10;
 }
 
 #sent_btn {
     position: fixed;
     bottom: 0px;
-    right: 10px;
+    right: 400px;
     width: 75px;
     height: 60px;
     font-size: 16px;
-    
+    margin: auto;
     line-height: 3em;
     color: #fff;
     font-weight: bold;
@@ -117,7 +122,7 @@ li.right-side {
     border: 1px solid #bbb;
     border-radius: 4px;
     box-sizing: border-box;
-    float: right;
+    
 }
 
 #sent_btn:hover {
@@ -125,4 +130,124 @@ li.right-side {
     cursor: pointer;
 }
 
+/* 一覧 */
+.img {
+    height: 300px;
+    object-fit: cover;
+  }
+  
+.li {
+    margin-left: 15px;
+  }
+  
+.list {
+    margin-bottom: 30px;
+  }
+  
+#global_navi a{
+    color: #b7a077;
+  }
+  
+a:hover {
+    color: #988564;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+#global_navi {
+    clear: both;
+    overflow: hidden;
+    width: 980px;
+  }
+  
+#global_navi ul {
+    list-style: none;
+    margin-bottom: 0px;
+    padding: 0px;
+  }
+  
+#global_navi ul li {
+    width: 195px;
+    float: left;
+    margin-right: 1px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+#global_navi ul li a {
+    display: block;
+    padding: 16px;
+    background-color: #352b23;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+#global_navi ul li.current a {
+    background-color: #b7a077;
+  }
+  
+#global_navi ul li.current a:hover {
+    background-color: #8c7a5b;
+  }
+  
+.main img {
+    height: 550px;
+    object-fit: cover;
+  }
 
+/* トーク履歴 */
+#pos ul li{
+    border-bottom: solid 0.5px #DCDCDC;
+}
+
+#pos ul li a {
+    display: block;
+    margin: 1px;
+}
+
+#pos ul li a img {
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin-right: 10px;
+}
+
+#pos ul li a:hover {
+    opacity: 0.75;
+}
+
+#return {
+    font-size: 40px;
+}
+
+/* ログイン */
+h4 {
+    text-align: center;
+}
+
+.loguin  {
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.sinki {
+    margin-top: 40px;
+    text-align: center;
+}
+.sinki a {
+    display: block;
+}
+.sinki a:hover {
+    opacity: 0.7;
+}
+
+
+
+
+
+/* ログイン完了 */
+.welcome {
+    border-radius: 40px;
+}

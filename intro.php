@@ -1,118 +1,23 @@
-<?php
-//関数
-session_start();
-
-function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
-    $dbh = new PDO($dsn,$user,$password);
-    $dbh->query('SET NAMES utf8');
-    return $dbh;
-}
-
-function select1() {
-    $dbh = connect();
-    $sql = 'SELECT picture FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->BindValue(':pic_id',0);
-    $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $rec) {
-        echo $rec['picture'];
-    }
-}
-
-function select3() {
-    global $i;
-    $dbh = connect();
-    $sql = 'SELECT picture FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->BindValue(':pic_id',$i);
-    $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $recs) {
-    echo $recs['picture'];
-    }
-}
-
-function insert1() {
-    $file=$_POST['up'];
-    $pic_id=$_POST['key'];
-    $dbh = connect();
-    $sql = 'REPLACE INTO sub (pic_id,user_id,picture) VALUES (:pic_id,:user_id,:picture)';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->BindValue(':pic_id',$pic_id);
-    $stmt->BindValue(':picture',$file);
-    $stmt->execute();
-    $stmt = null;
-    header('Location: http://localhost/original/subject/up.php');
-}
-
-function insert2() {
-    $onamae=$_POST['onamae'];
-    $lived=$_POST['lived'];
-    $live=$_POST['live'];
-    $age=$_POST['age'];
-    $learn=$_POST['learn'];
-    $job=$_POST['job'];
-    $intro=$_POST['intro'];
-    
-    $onamae=htmlspecialchars($onamae);
-    $live=htmlspecialchars($live);
-    $lived=htmlspecialchars($lived);
-    $age=htmlspecialchars($age);
-    $learn=htmlspecialchars($learn);
-    $job=htmlspecialchars($job);
-    $intro=htmlspecialchars($intro); 
-
-    $dbh = connect();
-    $sql = 'UPDATE human set simei = :simei, lived = :lived, live = :live, age=:age, learn=:learn, job=:job, intro=:intro WHERE user_id=:user_id';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':simei',$onamae);
-    $stmt->BindValue(':lived',$lived);
-    $stmt->BindValue(':live',$live);
-    $stmt->BindValue(':age',$age);
-    $stmt->BindValue(':learn',$learn);
-    $stmt->BindValue(':job',$job);
-    $stmt->BindValue(':intro',$intro);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->execute();
-    $stmt = null;
-    header('Location: http://localhost/original/subject/up.php');
-}
-
-function delete() {
-    $pic_id=$_POST['key'];
-    $dbh = connect();
-    $sql = 'DELETE FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->BindValue(':pic_id',$pic_id);
-    $stmt->execute();
-}
-
-function intro() {
-    $dbh = connect();
-    $sql = 'SELECT * FROM human WHERE user_id = :user_id';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $recs) {
-        ?>
-<div class="basic">
-    <form id="in" method="post" action="up.php">
-        <table>
-            <tbody>
-                <tr>
-                    <th>ニックネーム</th>
-                    <td><input type="text" name="onamae" id="onamae" value="<?php echo $recs['simei'] ; ?>"required></td>
-                </tr>
-                <tr>
-                    <th>出身地</th>
-                    <td>
-                    <select name="lived">
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<title>アップロード</title>
+</head>
+<body>
+    <div class="container">
+        <form id="in" method="post" action="nin.php">
+            <dl>
+                <dt>ニックネーム</dt>
+                <dd><input type="text" name="onamae" id="onamae" required></dd>
+                <dt>出身地</dt>
+                <dd>
+                <select name="lived">
                     <option value="">選択してください</option>
                     <option value="北海道">北海道</option>
                     <option value="青森県">青森県</option>
@@ -162,12 +67,10 @@ function intro() {
                     <option value="鹿児島県">鹿児島県</option>
                     <option value="沖縄県">沖縄県</option>
                 </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>住居</th>
-                    <td>
-                    <select name="live">
+                </dd>
+                <dt>住んでいる県</dt>
+                <dd>
+                <select name="live">
                     <option value="">選択してください</option>
                     <option value="北海道">北海道</option>
                     <option value="青森県">青森県</option>
@@ -217,12 +120,10 @@ function intro() {
                     <option value="鹿児島県">鹿児島県</option>
                     <option value="沖縄県">沖縄県</option>
                 </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>年齢</th>
-                    <td>
-                    <select name="age">
+                </dd>
+                <dt>年齢</dt>
+                <dd>
+                <select name="age">
                     <option value="">-</option>
                     <option value="0" selected>0</option>
                     <option value="1">1</option>
@@ -325,12 +226,10 @@ function intro() {
                     <option value="98">98</option>
                     <option value="99">99</option>
                 </select>　歳
-                    </td>
-                </tr>
-                <tr>
-                    <th>学歴</th>
-                    <td>
-                    <select name="learn">
+                </dd>
+                <dt>学歴</dt>
+                <dd>
+                <select name="learn">
                     <option value="">選択してください</option>
                     <option value="高卒">高卒</option>
                     <option value="大学卒">大学卒</option>
@@ -338,12 +237,10 @@ function intro() {
                     <option value="短大・専門学校卒">短大・専門学校卒</option>
                     <option value="その他">その他</option>
                 </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>仕事</th>
-                    <td>
-                    <select name="job">
+                </dd>
+                <dt>仕事</dt>
+                <dd>
+                <select name="job">
                     <option value="">選択してください</option>
                     <option value="公務員">公務員</option>
                     <option value="経営者・役員">経営者・役員</option>
@@ -355,116 +252,12 @@ function intro() {
                     <option value="学生">学生</option>
                     <option value="その他">その他</option>
                 </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>仕事</th>
-                    <td>
-                    <textarea name="intro" id="intro" cols="30" rows="10" required><?php echo $recs['intro'] ; ?></textarea>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <input type="submit" class="btn btn-outline-primary submit" name="sent" value="sousin">
-    </form>
-</div>
-    <?php
-    }
-}
-if(isset($_POST["send"])) {
-    delete();
-    insert1();
-}
-if(isset($_POST["sent"])) {
-    insert2();
-}
-?>
-<!doctype html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/st.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<title>プロフィール変更</title>
-</head>
-<body>
-<!-- プロフィール変更 -->
-<div class="container" id="gallery">
-<!-- Button trigger modal -->
-    <div class="main">
-        <img src="<?php select1() ?>" alt="" data-toggle="modal" data-target="#exampleModalCenter1">
+                </dd>
+                <dt>自己紹介</dt>
+                <dd><textarea name="intro" id="intro" cols="30" rows="10" required></textarea></dd>
+            </dl>
+            <input type="submit" value="sousin">
+        </form>
     </div>
-
-<!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">画像を選択してください</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <form method="post" action="up-sub.php" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <input type="file" name="file0" accept="image/*">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" name="ok" class="btn btn-primary ml-1"  value="OK">
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="thumb">
-        
-    <?php 
-    for($i = 1; $i<=5; $i++){
-    ?>
-
-        <img src="<?php select3() ?>" data-toggle="modal" data-target="#exampleModal<?php echo $i; ?>" id="<?php echo $i; ?>">
-        <?php
-        echo '<div class="modal fade" id="exampleModal'.$i.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        ?>
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?php echo "$i"; ?></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form method="post" action="up-sub.php" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <?php echo'<input type="file" name="file'.$i.'" accept="image/*">'; ?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary ml-1" name="sousin" value="OK">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-        <?php
-    }
-    ?>
-    <div id ="mylist">     
-        <div class="detail_box">
-            <h3>基本情報</h3>
-            <?php intro() ?>
-        </div>
-    </div>
-    <a class="check" href="pro.php">プロフィール確認</a>
-    
-
-</div>
-<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

@@ -22,6 +22,7 @@ for($i=0; $i<=5;$i++){
             }
             $file = 'upload/' . basename($_FILES['file'.$i.'']['name']);
             $id = $i;
+            echo $id;
             if (move_uploaded_file($_FILES['file'.$i.'']['tmp_name'], $file)) {
                 $msg = 'こちらの写真に設定しますか?';
                 echo '<div id="galleries">';

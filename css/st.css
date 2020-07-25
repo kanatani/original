@@ -1,8 +1,9 @@
 body {
-    background-color: #444;
     box-sizing: border-box;
     text-align: center;
+    
 }
+/* プロフィール */
 #galleries {
   padding-top: 40px;
   width: 500px;
@@ -16,14 +17,16 @@ body {
 
 #gallery {
     margin: auto;
+    padding-right: 100px;
     padding-top: 40px;
-    width: 500px;
+    width: 600px;
 }
 
 #gallery .main img {
     border: 4px solid #fff;
     box-shadow: 0px 0px 14px #000;
     width: 100%;
+    border-radius: 10px;
 }
 
 #gallery .main p {
@@ -41,11 +44,9 @@ body {
     width: 60px;
 }
 
-
 .upload-box {
   position: relative;
 }
-
 
 #files1 ,#files2 {
   height: 0px;
@@ -86,7 +87,171 @@ body {
 }
 
 
+/* 一覧 */
+.img {
+  height: 300px;
+  object-fit: cover;
+}
+
+.li {
+  margin-left: 15px;
+}
+
+.list {
+  margin-bottom: 30px;
+}
+
+#global_navi a{
+  color: #b7a077;
+}
+
+a:hover {
+  color: #988564;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#global_navi {
+  clear: both;
+  overflow: hidden;
+  width: 980px;
+}
+
+#global_navi ul {
+  list-style: none;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+#global_navi ul li {
+  width: 195px;
+  float: left;
+  margin-right: 1px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#global_navi ul li a {
+  display: block;
+  padding: 16px;
+  background-color: #352b23;
+  color: #fff;
+  text-decoration: none;
+}
+
+#global_navi ul li.current a {
+  background-color: #b7a077;
+}
+
+#global_navi ul li.current a:hover {
+  background-color: #8c7a5b;
+}
+
+.main img {
+  height: 550px;
+  object-fit: cover;
+}
+
+/* プロフィール */
+.thumb  {
+  margin-top: 30px;
+}
+.detail_box  {
+  margin-top: 30px;
+  border-top: solid 0.7px;
+  padding-top: 20px;
+}
+
+.detail_box table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.detail_box th,
+.detail_box td {
+  padding: 30px 0 30px 0;
+}
+
+
+tbody tr td {
+  color: #ff3399;
+}
 
 
 
-  
+
+
+/* 変更 */
+#in tbody{
+  background: #f1ede4;
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+
+#in th,
+#in td {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+#in th {
+  width: 13em;
+  float: left;
+  clear: both;
+  font-weight: bold;
+}
+
+#in td {
+  background: #fff;
+  border-left: 1px solid #ddd;
+  margin-left: 13em;
+}
+
+#in #onamae {
+  width: 15em;
+  padding: 5px;
+}
+
+.change {
+  position: relative;
+    display: block;
+    margin: auto;
+    width: 80%;
+    padding: 0 20px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    background-color: #fe6970;
+    color: #fff;
+    border-radius: 23px;
+}
+
+.change:hover  {
+  opacity: 0.7;
+  color: #fff;
+}
+
+.check {
+  position: relative;
+  display: block;
+  margin: auto;
+  width: 100%;
+  padding: 0 20px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  background-color: #fe6970;
+  color: #fff;
+  border-radius: 23px;
+}
+
+.check:hover  {
+  opacity: 0.7;
+  color: #fff;
+}
+
+
+.submit {
+  margin-bottom: 30px;
+}
