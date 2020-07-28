@@ -1,3 +1,124 @@
+<?php
+session_start();
+session_regenerate_id(true);
+
+function connectDB() {
+    $dsn = 'mysql:dbname=original;host=localhost';
+    $user = 'root';
+    $password = '';
+    $dbh = new PDO($dsn,$user,$password);
+    $dbh->query('SET NAMES utf8');
+    return $dbh;
+}
+
+function chat_select($chat_id) {
+    $dbh = connectDB();
+    $sql = 'SELECT * FROM chat WHERE user_id=:user_id and post_id=:post_id';
+    $stmt = $dbh->prepare($sql);
+    $stmt->BindValue(':user_id',$_SESSION['id']);
+    $stmt->BindValue(':post_id',$chat_id);
+    $stmt->execute();
+
+    $chat = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (empty($chat)) {
+        $room = mt_rand();
+        $dbh = connectDB();
+        $sql = 'INSERT INTO chat(room_id,user_id,post_id) VALUES ('.$room.','.$_SESSION['id'].','.$chat_id.'),('.$room.','.$chat_id.','.$_SESSION['id'].')';
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $dbh = null;
+    }
+    $dbh = null;
+}
+
+function insert() {
+    $dbh = connectDB();
+    $sql = 'INSERT INTO chat(room_id,user_id,post_id) VALUES ('.$room.','.$_SESSION['id'].','.$com.'),('.$room.','.$com.','.$_SESSION['id'].')';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    $dbh = null;
+}
+
+function match() {
+    $dbh = connectDB();
+    $sql = 'SELECT * FROM good AS t1 INNER JOIN good AS t2 ON t1.user_id = t2.com_id AND t1.com_id = :user_id';
+    $stmt = $dbh->prepare($sql);
+    $stmt->BindValue(':user_id',$_SESSION['id']);
+    $stmt->execute();
+    echo '<br>';
+    while(1)
+    {       
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec==false)
+        {
+            break;
+        }
+            
+        if(empty($rec)) {
+            echo 'グットボタンを押してね';
+        }
+            if(!empty($rec)){
+                
+                if($_SESSION['id'] ==  $rec['user_id']) {
+                    chat_select($rec['com_id']);
+                }
+            }
+            
+    }
+    $dbh = null;
+}
+
+function image($com_id) {
+    $dbh = connectDB();
+    $sql = 'SELECT picture FROM sub WHERE pic_id=0 AND user_id=:user_id';
+    $stmt = $dbh->prepare($sql);
+    $stmt->BindValue(':user_id',$com_id);
+    $stmt->execute();
+    foreach ($stmt->fetch(PDO::FETCH_ASSOC) as $image) {
+        echo $image;
+    }
+    $dbh = null;
+}
+
+function room() {
+$dbh = connectDB();
+$sql = 'SELECT  post_id, room_id , MAX(hour) FROM chat WHERE user_id=:user_id GROUP BY room_id ORDER BY MAX(hour) DESC';
+$stmt = $dbh->prepare($sql);
+$stmt->BindValue(':user_id',$_SESSION['id']);
+$stmt->execute();
+
+$i = 0;
+while(1)
+{       
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($rec==false)
+    {
+        break;
+    }
+    echo $rec['room_id'];
+    $room = $rec['room_id'];
+    ?>
+    <div id = "pos">
+        <ul class="message chatroom">
+            <li>
+                <div class="alert alert-light" role="alert">
+                    <a href="newms.php?room=<?php echo $rec['room_id']; ?>" class="alert-link postname"　onclick="document.download<?php echo $i ;?>.submit();return false;">
+                    <img src="<?php image($rec['post_id']) ?>" alt="">
+                        ニックネーム: <?php image($rec['post_id']) ?>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <?php
+    $i++;
+}
+$dbh = null;
+}
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -23,122 +144,10 @@
 </nav>
 
 <?php   
-session_start();
-session_regenerate_id(true);
 
 try {
-    function connectDB() {
-        $dsn = 'mysql:dbname=original;host=localhost';
-        $user = 'root';
-        $password = '';
-        $dbh = new PDO($dsn,$user,$password);
-        $dbh->query('SET NAMES utf8');
-        return $dbh;
-    }
-
-
-    function match() {
-        $dbh = connectDB();
-        $sql = 'SELECT * FROM good WHERE user_id = :user_id';
-        $stmt = $dbh->prepare($sql);
-        $stmt->BindValue(':user_id',$_SESSION['id']);
-        $stmt->execute();
-        $s=0;
-        while(1)
-        {       
-            $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-            if($rec==false)
-            {
-                break;
-            }
-    
-            echo $rec['com_id'];
-            
-            $sql = 'SELECT * FROM good WHERE user_id = :user_id';
-            $stmt = $dbh->prepare($sql);
-            $stmt->BindValue(':user_id',$rec['com_id']);
-            $stmt->execute();
-
-            $recs = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if(!isset($recs)) {
-                echo 'madamada';
-            }
-            if(isset($recs)){
-                if($_SESSION['id'] == $recs['com_id'] && $recs['user_id'] == $rec['com_id']) {
-                    insert();
-                }
-            }
-        }
-        $dbh = null;
-    }
-
-    function insert() {
-        global $i;
-        $i.$name = mt_rand();
-        $dbh = connectDB();
-        $sql = 'INSERT INTO chat(room_id,user_id) VALUES (:room_id,:user_id)';
-        $stmt = $dbh->prepare($sql);
-        $stmt->BindValue(':room_id',$i.$name);
-        $stmt->BindValue(':user_id',$_SESSION['id']);
-        $stmt->execute();
-        $dbh = null;
-        
-    }
-
-    function image() {
-        $dbh = connectDB();
-        $sql = 'SELECT picture FROM sub WHERE pic_id=0 AND user_id=:user_id';
-        $stmt = $dbh->prepare($sql);
-        $stmt->BindValue(':user_id',145);
-        $stmt->execute();
-        foreach ($stmt->fetch(PDO::FETCH_ASSOC) as $image) {
-            echo $image;
-        }
-        $dbh = null;
-    }
-
-    function room() {
-    $dbh = connectDB();
-    $sql = 'SELECT  room_id , MAX(hour) FROM chat WHERE user_id=:user_id GROUP BY room_id ORDER BY MAX(hour) DESC';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_id',$_SESSION['id']);
-    $stmt->execute();
-    
-    $i = 0;
-    while(1)
-    {       
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if($rec==false)
-        {
-            break;
-        }
-        echo $rec['room_id'];
-        $room = $rec['room_id'];
-        ?>
-        <div id = "pos">
-            <ul class="message chatroom">
-                <li>
-                    <div class="alert alert-light" role="alert">
-                        <a href="newms.php?room=<?php echo $rec['room_id']; ?>" class="alert-link postname"　onclick="document.download<?php echo $i ;?>.submit();return false;">
-                        <img src="<?php image() ?>" alt="">
-                            名前
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <?php
-        $i++;
-    }
-    $dbh = null;
-    }
-        
     match();
     room();
-    
-    
 
 } 
 catch(PDOException $e) {

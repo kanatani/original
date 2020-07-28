@@ -15,6 +15,18 @@ try {
         return $dbh;
     }
 
+    function img($com_id) {
+        $dbh = connectDB();
+        $sql = 'SELECT * FROM sub WHERE user_id = :user_id and pic_id=0';
+        $stmt = $dbh->prepare($sql);
+        $stmt->BindValue(':user_id',$com_id);
+        $stmt->execute(); 
+        
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $img) {
+            echo $img['picture'];
+        }
+    }
+
     function in() {
         $room_id = $_POST['rooom'];
         $mean = $_POST['mean'];
@@ -57,7 +69,7 @@ try {
                         ?>
                             <li class="bms left-side"> 
                                 <div class="pic">
-                                <img src="<?php  ?>" alt="">
+                                <img src="<?php img($message['user_id']); ?>" alt="">
                                 <br>
                                 <div><?php echo $message['user_id']; ?></div>
                                 </div>
@@ -69,7 +81,7 @@ try {
                                 </div>  
                             </li>
                         <?php
-                        $dbh=null;
+                        $dbh = null;
                         }
                     }
                 }

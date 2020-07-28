@@ -4,6 +4,7 @@ session_start();
 if(isset($_POST["her_id"])) {
     $_SESSION['com_id'] = $_POST["her_id"];
 }
+echo $_SESSION['com_id'];
 function connect() {
     $dsn = 'mysql:dbname=original;host=localhost';
     $user = 'root';
