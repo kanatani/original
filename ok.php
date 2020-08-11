@@ -20,21 +20,25 @@ $simei=$_POST['simei'];
 $gmail=$_POST['gmail'];
 $content=$_POST['content'];
 
+
 $simei= htmlspecialchars($simei);
 $gamil= htmlspecialchars($gmail);
 $content= htmlspecialchars($content);
 
-$sql='INSERT INTO toi(simei,gmail,content) VALUES ("'.$simei.'","'.$gmail.'","'.$content.'")';
-
+$sql='INSERT INTO toi(onamae,gmail,content) VALUES ("'.$simei.'","'.$gmail.'","'.$content.'")';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
 ?>
-<div class="container">
-    <h4>お問い合わせのご協力ありがとうございました。</h4>
-    <br>
-    <h4>またこちらから連絡いたしますので少々お待ちください。</h4>
-    <a href="toi.php">戻る</a>
+<div id="inquire">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thank you for inquiring your opinion!
+            </h4>
+            <p class="card-text">頂いたご意見を元に改善していきます！</p>
+            <a href="look.php" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 </div>
 <?php
 }
@@ -43,5 +47,8 @@ catch(Exception $e)
     print'ただいま障害によりご迷惑をおかけしております。';
 }
 ?>
+<script type="text/javascript" src="js/app.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/st.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>トップページ</title>
 </head>
 <body>
-<div class="container">
+<div class="container top_page">
   <!-- Content here -->
     <h4>ログイン</h4>
     </br>
@@ -35,6 +35,12 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>
 

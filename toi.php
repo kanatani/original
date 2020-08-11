@@ -7,20 +7,22 @@
 <title>お問い合わせ</title>
 </head>
 <body>
-    <div class="container">
+    <div id="inquire">
         <h2>お問い合わせ</h2>
         <form id="entry" method="post" action="kakunin.php">
             <dl>
                 <dt>氏名</dt>
-                <dd><input type="text" name="simei" class="form-control" id="exampleFormControlTextarea1" required></dd>
+                <dd><input type="text" name="simei" class="form-control" id="" required></dd>
                 <dt>メールアドレス</dt>
-                <dd><input type="email" name="gmail" class="form-control" id="exampleFormControlTextarea1" required></dd>
+                <dd><input type="email" name="gmail" class="form-control" id="" required></dd>
                 <dt>お問い合わせ内容</dt>
-                <dd><textarea name="content" class="form-control" id="exampleFormControlTextarea1" cols="10" rows="5"></textarea></dd>
+                <dd><textarea name="content" class="form-control" id="" cols="10" rows="5"></textarea></dd>
             </dl>
             <input name="send" id="send" class="btn btn-outline-primary" type="submit" value="送信">
         </form>
 　　</div>
-
+<script type="text/javascript" src="js/app.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

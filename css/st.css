@@ -1,8 +1,111 @@
-body {
-    box-sizing: border-box;
-    text-align: center;
-    
+
+/* ログイン */
+.top_page {
+  margin-top: 50px;
 }
+
+h4 {
+  text-align: center;
+  
+}
+
+.loguin  {
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+  align-items: center; 
+}
+
+.sinki {
+  margin-top: 40px;
+  text-align: center;
+}
+.sinki a {
+  display: block;
+}
+.sinki a:hover {
+  opacity: 0.7;
+}
+
+/* ログイン完了 */
+.parent {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.welcome {
+  position: absolute;
+  top: 30%;
+  background: white;
+  height: 150px;
+  width: 500px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.welcome h1,p{
+  text-align: center;
+  font-family:serif;
+}
+
+.in_list {
+  margin: auto;
+  text-align: center;
+}
+
+.in_list button{
+ width: 300px;
+}
+
+/* 初回ログイン */
+.option {
+  background: skyblue;
+  display: table;
+  width: 100%;
+  height: 300px
+}
+
+.option a{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* イントロ自己紹介 */
+
+#entry {
+  margin-top: 30px;
+}
+
+#entry dl dt,
+#entry dl dd  {
+padding: 10px;
+}
+
+#entry #simei{
+  width:15em;
+  padding: 3px;
+}
+
+#entry dl dt  {
+  width: 13em;
+  float: left;
+  clear: both;
+}
+
+#entry  #my_like{
+  width: 36em;
+  height: 15em;
+}
+
+#submit_btn {
+  display: inline;
+  text-align: center;
+  margin: auto;
+}
+
 /* プロフィール */
 #galleries {
   padding-top: 40px;
@@ -44,48 +147,132 @@ body {
     width: 60px;
 }
 
-.upload-box {
-  position: relative;
-}
-
-#files1 ,#files2 {
-  height: 0px;
-  visibility: hidden;
-  position: absolute;
-}
-
-.upload-box-ie8 {
-  position: relative;
-  overflow: hidden;
-  width: 100px;
-  height: 100px;
-}
-
-.upload-box-ie8 input[type=file] {
-  position: absolute;
-  left: -999px;
-  opacity: 0;
-}
-
-.upload-box-ie8 label {
-  background-color: #1C90F3;
-  color: #ffffff;
-  display: block;
-  width: 100px;
-  height: 100px;
-  font-size: 11px;
+.com_like_card {
   text-align: center;
-  line-height: 100px;
 }
 
-.upload-box-ie8 label span {
+.scroll_card {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 30px;
+}
+
+.scroll_list {
+  display: inline-block;
+  width: 40%;
+  height: 100px;
+  padding-right: 10px;
+}
+
+.scroll_list img{
+  margin: auto;
+  width: 70%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  
+}
+
+/* チャットルーム */
+#chat_room a{
+  width: 100%;
+}
+
+#pos{
+ width: 100%;
+}
+
+#pos ul li{
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+  border-bottom: solid 0.5px #DCDCDC;
+  
+}
+
+#pos ul li a {
   display: block;
+  margin: 1px;
 }
 
-#preview img{
-    width: 100%;
+#pos ul li a img {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  margin-right: 10px;
 }
 
+#pos ul li a:hover {
+  opacity: 0.75;
+}
+
+#return {
+  font-size: 40px;
+}
+
+.message {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  z-index: 1;
+}
+
+.message li {
+  display: flex;
+  z-index: 1;
+}
+
+.message li + li {
+  margin-top: 32px;
+}
+
+li.right-side {
+  flex-direction: row-reverse;
+}
+
+.pic {
+  width: 80px;
+  text-align: center;
+}
+
+.pic img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.text {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px 24px;
+  max-width: 60%;
+  line-height: 1.8;
+  position: relative;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.text::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  position: absolute;
+}
+
+.left-side .text::before{ 
+  top: 12px;
+  left: -16px;
+  border-right-color: #fff;
+}
+
+.right-side .text::before{ 
+  top: 12px;
+  right: -16px;
+  border-left-color: #fff;
+}
 
 /* 一覧 */
 .img {
@@ -111,6 +298,7 @@ a:hover {
   text-decoration: none;
 }
 
+/* ナビ */
 #global_navi {
   clear: both;
   overflow: hidden;
@@ -124,7 +312,7 @@ a:hover {
 }
 
 #global_navi ul li {
-  width: 195px;
+  width: 162px;
   float: left;
   margin-right: 1px;
   margin-bottom: 30px;
@@ -134,18 +322,28 @@ a:hover {
 #global_navi ul li a {
   display: block;
   padding: 16px;
-  background-color: #352b23;
+  background-color: skyblue;
   color: #fff;
   text-decoration: none;
 }
 
 #global_navi ul li.current a {
-  background-color: #b7a077;
+  background-color: #44FFFF;
 }
 
 #global_navi ul li.current a:hover {
-  background-color: #8c7a5b;
+  background-color: rgb(82, 194, 238);
 }
+
+#ot {
+  display: none;
+  }
+
+#ot #other {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
 
 .main img {
   height: 550px;
@@ -172,15 +370,9 @@ a:hover {
 .detail_box td {
   padding: 30px 0 30px 0;
 }
-
-
 tbody tr td {
   color: #ff3399;
 }
-
-
-
-
 
 /* 変更 */
 #in tbody{
@@ -251,7 +443,302 @@ tbody tr td {
   color: #fff;
 }
 
-
 .submit {
   margin-bottom: 30px;
 }
+
+/* いいね機能 */
+.good_navi {
+  width: 980px;
+  overflow: hidden;
+}
+
+.content {
+  text-align: center;
+  margin: auto;
+}
+
+.good_navi a {
+  height: 40px;
+  display: block;
+  float: left;
+  text-align: center;
+  width: 489px;
+  margin: 10px 1px 30px 0px;
+  background-color: #eeeeee;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.now a{
+  background-color: #99ffff;
+}
+
+.good_navi a:hover {
+  opacity: 0.7;
+}
+
+/* 好みカード一覧表 */
+
+.horizontal-list {
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.item {
+  /* 横スクロール用 */
+  display: inline-block;
+  padding: 0px 10px;
+  vertical-align: top;
+}
+
+.item img{
+  border-radius: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+#hobby_card {
+  white-space: normal;
+  width: 100px;
+  word-break: break-word;
+}
+
+.like{
+  margin: 30px;
+}
+.bad {
+  margin: 30px;
+}
+
+.make {
+  background: #59dada;
+  display: block;
+  margin: auto;
+  text-align: center;
+  color: white;
+  width: 60%;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.make a:hover{
+  opacity: 0.7;
+  color: white;
+}
+
+
+/* カード作成ページ */
+
+
+
+/* like検索画像一覧 */
+
+.car {
+  width: 100%;
+}
+
+.search {
+  list-style: none;
+  text-align: center;
+}
+
+.search-list {
+  margin: 10px;
+  width: 30%;
+  display: inline-block;
+  
+}
+
+.search-img {
+  width: 90%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 検索 */
+
+#look {
+  text-align: center;
+  
+}
+
+#input {
+  display: table-cell;
+  vertical-align: middle;
+  margin : 20px;
+  border: 1px normal;
+  border-radius: 5px;
+  width: 50%;
+}
+
+/* グループ詳細一覧 */
+.main_range {
+  text-align: center;
+}
+
+#forms {
+  border-bottom: 1px solid;
+  margin-bottom: 40px;
+}
+
+.main_img img{
+  margin-top: 30px;
+  width: 30%;
+  border-radius: 20px;
+}
+
+.main_text p{
+  margin: 30px;
+  padding-bottom: 30px;
+}
+
+.love {
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: 50%;
+}
+
+.back {
+  background: #59dada;
+  display: block;
+  margin: auto;
+  text-align: center;
+  color: white;
+  width: 60%;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+
+/* メッセージメニュー */
+
+.con {
+  height: 850px;
+  padding: 32px;
+  position: relative;
+  overflow: auto;
+}
+
+.message {
+  
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  z-index: 1;
+}
+
+.message li {
+  display: flex;
+  z-index: 1;
+}
+
+.message li + li {
+  margin-top: 32px;
+}
+
+
+li.right-side {
+  flex-direction: row-reverse;
+}
+
+.pic {
+  width: 80px;
+  text-align: center;
+}
+
+.pic img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.text {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px 24px;
+  max-width: 60%;
+  line-height: 1.8;
+  position: relative;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.text::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  position: absolute;
+}
+
+.left-side .text::before{ 
+  top: 12px;
+  left: -16px;
+  border-right-color: #fff;
+}
+
+.right-side .text::before{ 
+  top: 12px;
+  right: -16px;
+  border-left-color: #fff;
+}
+
+/* 送信欄 */
+#form {
+  position: relative;
+  margin: auto;
+  height: 48px;
+  padding: 4px;  
+  
+}
+
+#sent_message {
+  position: fixed;
+  margin: auto;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 50%;
+  line-height: 16px;
+  height: 48px;
+  padding: 14px 6px 0px 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.5) inset;
+  box-sizing: border-box;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+#sent_btn {
+  position: fixed;
+  bottom: 0px;
+  right: 400px;
+  width: 75px;
+  height: 60px;
+  font-size: 16px;
+  margin: auto;
+  line-height: 3em;
+  color: #fff;
+  font-weight: bold;
+  background: #bcbcbc;
+  text-align: center;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+}
+
+#sent_btn:hover {
+  background: #13178E;
+  cursor: pointer;
+}
+

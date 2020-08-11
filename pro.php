@@ -1,12 +1,3 @@
-<!doctype html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/st.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<title>プロフィール確認</title>
-</head>
-<body>
 <?php
 session_start();
 
@@ -84,21 +75,105 @@ function intro() {
     }
 }
 
+function like_card(){
+    $dbh = connect();
+    $sql = 'SELECT * FROM life_style WHERE com_id = :com_id AND types = "like"';
+    $stmt = $dbh->prepare($sql);
+    $stmt->BindValue('com_id',$_SESSION['id']);
+    $stmt->execute();
+    while(1){
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec == false) {
+        break;
+        }
+        ?>
+            <li class="scroll_list">
+                <a href=""><img src="<?php echo $rec['picture']; ?>" alt=""></a>
+                <div><?php echo $rec['hobby_card']; ?></div>
+            </li>
+        <?php
+    }
+}
 
+function bad_card(){
+    $dbh = connect();
+    $sql = 'SELECT * FROM life_style WHERE com_id = :com_id AND types = "bad"';
+    $stmt = $dbh->prepare($sql);
+    $stmt->BindValue('com_id',$_SESSION['id']);
+    $stmt->execute();
+    while(1){
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($rec == false) {
+        break;
+        }
+        ?>
+            <li class="scroll_list">
+                <a href=""><img src="<?php echo $rec['picture']; ?>" alt=""></a>
+                <div><?php echo $rec['hobby_card']; ?></div>
+            </li>
+        <?php
+    }
+}
 ?>
-    <div class="container">
-        <nav id="global_navi">
-            <ul>
-                <li><a href="look.php">search</a></li>
-                <li><a href="good.php">good</a></li>
-                <li><a href="like.php">趣味</a></li>
-                <li><a href="chat.php">チャット</a></li>
-                <li class="current"><a href="pro.php">プロフィール</a></li>
-            </ul>
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/st.css">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>プロフィール確認</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container nav">
+        <nav id="global_navi" class = "nav">
+                <ul>
+                    <li><a href="look.php">
+                        <i class="fas fa-search"></i>
+                        search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="good.php">
+                        <i class="fas fa-thumbs-up"></i>
+                            good 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="like.php">
+                        <i class="far fa-kiss-wink-heart"></i>
+                            趣味
+                        </a>
+                    </li>
+                    <li><a href="chat.php">
+                    <i class="fas fa-comments"></i>
+                        チャット
+                        </a>
+                    </li>
+                    <li class="current"><a href="pro.php">
+                    <i class="fas fa-user-alt"></i>
+                        プロフィール</a>
+                    </li>
+                    <li><a href="#">その他</a>
+                    <ul id="ot">
+                        <li id="other">
+                            <a href="toi.php">
+                            <i class="fas fa-question-circle"></i>
+                                お問い合わせ
+                            </a></li>
+                        <li id="other">
+                            <a href="out.php">
+                            <i class="fas fa-sign-out"></i>
+                                ログアウト
+                            </a>
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
         </nav>
-
-
-             <div id="gallery">
+    
+        <div id="gallery">
             <div class = "main">
             <img src="<?php select1() ?>" alt="">
             </div>
@@ -120,13 +195,28 @@ function intro() {
                     <h3>基本情報</h3>
                     <?php intro() ?>
                 </div>
+
+                <div>
+                <h3 class="com_like_card">お好みカード</h3>
+                <div>like</div>
+                <div class="scroll">
+                    <ul class="scroll_card">
+                        <?php like_card() ?>
+                    </ul>
+                </div>
+
+                <div>bad</div>
+                <div class="scroll">
+                    <ul class="scroll_card">
+                        <?php bad_card() ?>
+                    </ul>
+                </div>
+            </div>
             </div>
         </div>
-        <a  class="change" href="up.php">プロフィール変更</a>
+        <a class="change" href="up.php">プロフィール変更</a>
 　　</div>
-
-<script language="javascript" type="text/javascript">
-
+<script>
 let mainFlame = document.querySelector('#gallery .main');
 
 let thumbFlame = document.querySelector('#gallery .thumb');
@@ -138,6 +228,10 @@ thumbFlame.addEventListener('click', function(event){
         mainImage.src = event.target.src;
     }
 });
+</script>
+<script src="js/app.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </script>
 </body>
 </html>

@@ -25,7 +25,8 @@ if (empty($content)) {
 }
 else {
 ?>
-<div class="container">
+<div id = "inquire">
+    <h3>下記の内容でお間違い無いですか?</h3>
     <div class="card text-center mt-3">
         <div class="card-body">
             <p class="card-text">氏名:<?php echo $simei;?>様</p>
@@ -40,8 +41,6 @@ else {
         </div>
     </div>
     <br>
-
-    <h3>上記の内容でお間違い無いですか?</h3>
     <form id="ok" method="post" action="ok.php">
         <input name="simei" type="hidden" value = "<?php echo $simei;?>" >
         <input name="gmail" type="hidden" value = "<?php echo $gmail;?>" >
@@ -53,5 +52,8 @@ else {
 <?php
 }
 ?>
+<script type="text/javascript" src="js/app.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

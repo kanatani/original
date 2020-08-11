@@ -4,6 +4,7 @@ session_regenerate_id(true);
 try { 
     if (isset($_GET['room'])) {
         $_SESSION['room']= $_GET['room'];
+        $_SESSION['simei']= $_GET['simei'];
     }
 
     function connectDB() {
@@ -24,6 +25,18 @@ try {
         
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $img) {
             echo $img['picture'];
+        }
+    }
+
+    function com_name($com_id) {
+        $dbh = connectDB();
+        $sql = 'SELECT distinct simei FROM human WHERE user_id = :user_id';
+        $stmt = $dbh->prepare($sql);
+        $stmt->BindValue(':user_id',$com_id);
+        $stmt->execute(); 
+        
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $name) {
+            echo $name['simei'];
         }
     }
 
@@ -71,7 +84,7 @@ try {
                                 <div class="pic">
                                 <img src="<?php img($message['user_id']); ?>" alt="">
                                 <br>
-                                <div><?php echo $message['user_id']; ?></div>
+                                <div><?php com_name($message['user_id']); ?></div>
                                 </div>
                                 <div class="text">
                                 <?php  
@@ -93,7 +106,8 @@ try {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/st.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <title>チャット</title>
 </head>
 <body>
@@ -119,20 +133,33 @@ try {
             <form id = "form" method = "post" action="newms.php"> 
                 <textarea  name="mean" id="sent_message" cols="30" rows="2"></textarea>
                 <input type="hidden" name="rooom" value=<?php echo $_SESSION['room'] ;?>>
+                <input type="hidden" name="scroll_top" value="" class="st">
                 <input name = "send" id="sent_btn" type="submit" value="送信">
             </form> 
         </div>
     </div>
 </div>
 
-<script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<?php
+<script language="javascript" type="text/javascript">
 
+$('form').submit(function(){
+  var scroll_top = $(window).scrollTop();  //送信時の位置情報を取得
+  $('input.st',this).prop('value',scroll_top);  //隠しフィールドに位置情報を設定
+});
+ 
+window.onload = function(){
+  //ロード時に隠しフィールドから取得した値で位置をスクロール
+  $(window).scrollTop(<?php echo @$_REQUEST['scroll_top']; ?>);
+}
+</script>
+<?php
 } 
 catch(PDOException $e) {
     print'接続されていません';
 }
 ?>
+<script type="text/javascript" src="js/app.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

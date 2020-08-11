@@ -358,7 +358,7 @@ function intro() {
                     </td>
                 </tr>
                 <tr>
-                    <th>仕事</th>
+                    <th>紹介文</th>
                     <td>
                     <textarea name="intro" id="intro" cols="30" rows="10" required><?php echo $recs['intro'] ; ?></textarea>
                     </td>
@@ -466,5 +466,7 @@ if(isset($_POST["sent"])) {
 
 </div>
 <script type="text/javascript" src="js/app.js"></script>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

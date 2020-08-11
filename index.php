@@ -1,11 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Ajax、PHP、MySQLの連携</title>
+<link rel="stylesheet" href="">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
 <body>
-<div class="container">
-    
+
+IDを入力:<input id="id_number" type="number"><br>
+
+<div id="result">
+ <p>数値を入力してボタンを押してください。</p>
 </div>
+<button id="ajax">ボタン</button>
+
+<script>
+$(function(){
+
+ $('#ajax').on('click',function(){
+
+  $.ajax({
+   url:'dbname.php', //送信先
+   type:'POST', //送信方法
+   datatype: 'json', //受け取りデータの種類
+   data:{
+    'id' : $('#id_number').val()
+   }
+   })
+   // Ajax通信が成功した時
+   .done( function(data) {
+   $('#result').html("<p>ID番号"+data[0].id+"は「"+data[0].name+"」さんです。<br>メールアドレスは「"+data[0].mail+"」です。</p>");
+   console.log('通信成功');
+   console.log(data);
+   })
+   // Ajax通信が失敗した時
+   .fail( function(data) {
+   $('#result').html(data);
+   console.log('通信失敗');
+   console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
+                    console.log("textStatus     : " + textStatus);    // タイムアウト、パースエラー
+                    console.log("errorThrown    : " + errorThrown.message); // 例外情報
+                    console.log("URL            : " + url);
+   })
+ }); //#ajax click end
+
+}); //END
+</script>
+
 </body>
 </html>

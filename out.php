@@ -7,20 +7,36 @@
 <title>ログアウト</title>
 </head>
 <body>
-<div class="container">
-<?php
-session_start();
-if (isset($_SESSION["simei"])) {
-    echo 'Logoutしました。';
-  } else {
-    echo 'SessionがTimeoutしました。';
-  }
-$_SESSION = array();
-setcookie($_COOKIE[session_name()], '', time()-1);
-session_destroy();
+<div class="connect">
+  <?php
+  session_start();
+  if (isset($_SESSION['id'])) {
+    ?>
+        <div class="alert alert-success thanks" role="alert">
+          <h4 class="alert-heading">THANK YOU!</h4>
+          <p>ログアウトしました！</p>
+          <hr>
+          <p class="mb-0 again"><a class="btn btn-primary" href="top.php" role="button">ログイン</a></p>
+        </div>
+    <?php
+    } else {
+      ?>
+      <div class="alert alert-success thanks" role="alert">
+        <h4 class="alert-heading">session切れ</h4>
+        <p>ログアウトしました！</p>
+        <hr>
+        <p class="mb-0 again"><a class="btn btn-primary" href="top.php" role="button">ログイン</a></p>
+      </div>
+  <?php
+    }
+  $_SESSION = array();
+  setcookie($_COOKIE[session_name()], '', time()-1);
+  session_destroy();
 
-?>
-<a href="top.php">ログイン</a>
+  ?>
+  
 </div>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

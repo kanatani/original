@@ -48,7 +48,7 @@ $stmt->execute();
 
 
 <a href="intro.php">戻り</a>
-
+<a href="look.php">探す</a>
 
     <?php 
 } 
