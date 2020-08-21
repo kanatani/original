@@ -1,15 +1,96 @@
+/* トップページ */
+.back-img {
+  height: 700px;
+  position: relative;
+}
+
+.back-img h1 {
+  font-size: 60px;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 5px;
+  color: skyblue;
+  float: left;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.back-img nav {
+  font-size: 30px;
+  float: right;
+  margin-top: 30px;
+  margin-right: 30px;
+
+}
+
+.back-img nav ul{
+  list-style: none;
+  color: skyblue;
+}
+
+.back-img nav ul li{
+  float: left;
+  text-align: center;
+  color: skyblue;
+}
+
+.back-img nav ul li a
+{
+  letter-spacing: 4px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  color: skyblue;
+}
+
+.start_connect,.new_connect {
+  margin-right: 30px;
+  border-bottom: 2px solid transparent;
+}
+
+.back-img p {
+  font-size: 20px;
+  letter-spacing: 5px;
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+}
+
+/* 新規登録 */
+#new{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  margin: auto;
+  text-align: center;
+  width: 600px;
+
+  justify-content: center;
+  align-items: center;
+}
+ .smallfont {
+   letter-spacing: 4px;
+ }
+
 
 /* ログイン */
 .top_page {
   margin-top: 50px;
 }
 
-h4 {
+.loguin_font {
+  font-family: 'Raleway Dots', cursive;
+  letter-spacing: 10px;
   text-align: center;
-  
 }
 
-.loguin  {
+.login  {
   width: 50%;
   margin: auto;
   justify-content: center;
@@ -125,11 +206,16 @@ padding: 10px;
     width: 600px;
 }
 
-#gallery .main img {
+ .main img {
     border: 4px solid #fff;
     box-shadow: 0px 0px 14px #000;
     width: 100%;
     border-radius: 10px;
+    object-fit: cover;
+}
+
+ .main  {
+    text-align: center;
 }
 
 #gallery .main p {
@@ -145,7 +231,15 @@ padding: 10px;
     height: 60px;
     margin: 10px;
     width: 60px;
+    text-align: center;
 }
+
+#option_image{
+  vertical-align: middle;
+  text-align: center;
+  margin: 15px 15px 15px 15px;
+}
+
 
 .com_like_card {
   text-align: center;
@@ -176,6 +270,9 @@ padding: 10px;
 /* チャットルーム */
 #chat_room a{
   width: 100%;
+  display: block;
+  margin: 20px;
+  color: skyblue;
 }
 
 #pos{
@@ -186,13 +283,6 @@ padding: 10px;
   display: inline-block;
   text-align: left;
   width: 100%;
-  border-bottom: solid 0.5px #DCDCDC;
-  
-}
-
-#pos ul li a {
-  display: block;
-  margin: 1px;
 }
 
 #pos ul li a img {
@@ -244,7 +334,8 @@ li.right-side {
 }
 
 .text {
-  background: #fff;
+  display: block;
+  margin: 1px;
   border-radius: 8px;
   padding: 16px 24px;
   max-width: 60%;
@@ -344,7 +435,6 @@ a:hover {
   padding-bottom: 0px;
 }
 
-
 .main img {
   height: 550px;
   object-fit: cover;
@@ -371,12 +461,12 @@ a:hover {
   padding: 30px 0 30px 0;
 }
 tbody tr td {
-  color: #ff3399;
+  color: skyblue;
 }
 
 /* 変更 */
 #in tbody{
-  background: #f1ede4;
+  background: skyblue;
   border: 1px solid #ddd;
   border-top: 0;
 }
@@ -414,7 +504,7 @@ tbody tr td {
     height: 45px;
     text-align: center;
     line-height: 45px;
-    background-color: #fe6970;
+    background-color: skyblue;
     color: #fff;
     border-radius: 23px;
 }
@@ -433,7 +523,7 @@ tbody tr td {
   height: 45px;
   text-align: center;
   line-height: 45px;
-  background-color: #fe6970;
+  background-color: skyblue;
   color: #fff;
   border-radius: 23px;
 }
@@ -531,7 +621,97 @@ tbody tr td {
 }
 
 
+
 /* カード作成ページ */
+
+#make_card {
+  margin: auto;
+  width: 600px;
+}
+
+#make_form {
+  margin-top: 200px;
+}
+
+.request {
+  
+  margin-top: 30px;
+}
+
+#cate  {
+  background: skyblue;
+  color: #fff;
+  border-radius: 2em;
+}
+
+#type {
+  background: skyblue;
+  color: #fff;
+  border-radius: 2em;
+}
+
+.filelabel {
+  color: skyblue;
+  border: 2px solid;
+  border-radius: 3em;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.filelabel:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#filesend {
+  display: none;
+}
+
+.cardselect {
+  font-family: 'Caveat', cursive;
+}
+
+/* アニメーション */
+
+#text_top {
+  font-size: 16px;
+  width: 100%;
+    border: none;
+    outline: none;
+    padding-bottom: 8px;
+    box-sizing: border-box
+}
+
+.text_underline {
+  position: relative;
+  border-top: 1px solid #c2c2c2;
+}
+
+.text_underline::before,
+.text_underline::after
+ {
+  position: absolute;
+  bottom: 0px;
+  width: 0px;
+  height: 1px;
+  content:'';
+  background-color: skyblue;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.text_underline::before {
+  left: 50%;
+}
+
+.text_underline::after {
+  right: 50%;
+}
+
+#text_top:focus + .text_underline::before,
+#text_top:focus + .text_underline::after{
+  width: 50%;
+}
 
 
 

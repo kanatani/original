@@ -46,8 +46,11 @@ else
     $link = '<a href="sinki.html">戻る</a>';
 }
 $dbh =null;
+echo '<div id = "">';
 echo '<h3>'.$smg.'</h3>';
 echo $link;
+echo '</div>';
+
 }
 
 catch(PDOException $e) {
@@ -55,5 +58,7 @@ catch(PDOException $e) {
 }
 ?>
 </div>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

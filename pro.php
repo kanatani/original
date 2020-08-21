@@ -12,28 +12,63 @@ function connect() {
 
 function select1() {
     $dbh = connect();
-    $sql = 'SELECT picture FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
+    $sql = 'SELECT distinct picture FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
     $stmt = $dbh->prepare($sql);
     $stmt->BindValue(':user_id',$_SESSION['id']);
     $stmt->BindValue(':pic_id',0);
     $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $rec) {
-        echo $rec['picture'];
-    }
+
+    while(1){
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if(!empty($rec['picture']))
+        {
+            ?>
+                <img src="<?php echo $rec['picture']; ?>" data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
+            <?php
+            
+        break;
+        }
+        else{
+
+            echo '<i class="fas fa-camera fa-5x"></i>';
+            echo '<br>';
+            echo '画像を選択してください';
+            break;
+        }
+
+
+        }
 }
 
 function select2() {
     global $i;
     $dbh = connect();
-    $sql = 'SELECT picture FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
+    $sql = 'SELECT distinct picture FROM sub WHERE user_id = :user_id AND pic_id=:pic_id';
     $stmt = $dbh->prepare($sql);
     $stmt->BindValue(':user_id',$_SESSION['id']);
     $stmt->BindValue(':pic_id',$i);
     $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $recs) {
-    echo $recs['picture'];
+
+    while(1){
+        $recs = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if(!empty($recs['picture']))
+        {
+            ?>
+                <img src="<?php echo $recs['picture']; ?>"  data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
+            <?php
+            
+        break;
+        }
+        else{
+            echo '<i class="fas fa-camera fa-3x " id = "option_image"></i>';
+            
+            break;
+        }
+        }
     }
-}
+
 
 function intro() {
     $dbh = connect();
@@ -175,13 +210,15 @@ function bad_card(){
     
         <div id="gallery">
             <div class = "main">
-            <img src="<?php select1() ?>" alt="">
+                <?php select1() ?>
             </div>
             <div class = "thumb">
             <?php 
             for($i = 0; $i<=5; $i++){
             ?>
-            <img src="<?php select2() ?>" data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
+            
+            <?php select2() ?>
+            
             <?php
             }
             ?>

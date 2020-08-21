@@ -166,11 +166,13 @@ if(isset($_POST["send"])) {
 <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.5.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="css/icons.css" />
 <link rel="stylesheet" href="css/st.css">
+<link href="https://fonts.googleapis.com/css2?family=Mukta&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <title>プロフィール確認</title>
 
 </head>
 <body>
+
     <div class="container nav">
         <nav id="global_navi">
                 <ul>
@@ -253,7 +255,6 @@ $('#se').on('click',function(){
  $.ajax({
   url:'dbname.php', //送信先
   type:'POST', //送信方法
-  datatype: 'json', //受け取りデータの種類
   data:{
    'com_id' : $('input:hidden[name="compassion_id"]').val(),
    'user_id' : $('input:hidden[name="user_id"]').val()
@@ -261,7 +262,6 @@ $('#se').on('click',function(){
   })
   // Ajax通信が成功した時
   .done( function(data) {
-  $('#result').html("<p>成功</p>");
   console.log('通信成功');
   console.log(data);
   })
@@ -311,3 +311,8 @@ window.onload = function(){
 
 </body>
 </html>
+
+
+
+
+

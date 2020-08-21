@@ -36,7 +36,7 @@ $stmt->execute();
             <h4 class="card-title">Thank you for inquiring your opinion!
             </h4>
             <p class="card-text">頂いたご意見を元に改善していきます！</p>
-            <a href="look.php" class="btn btn-primary">Go somewhere</a>
+            <a href="look.php" class="btn btn-primary">サイトに戻る</a>
         </div>
     </div>
 </div>

@@ -1,7 +1,5 @@
 
 <?php
-header('Content-type: application/json');
-    
     $com_id = $_POST['com_id'];
     $user_id = $_POST['user_id'];
 
@@ -32,5 +30,4 @@ header('Content-type: application/json');
             $stmt->BindValue(':com_id',$com_id);
             $stmt->execute();
         }
-
 ?>

@@ -2,35 +2,45 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/st.css">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100&family=Mukta&family=Raleway&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+.new_option{
+    font-family: 'M PLUS 1p', sans-serif;
+    letter-spacing: 3px;
+}
+</style>
 <title>新規登録</title>
 </head>
 <body>
-    <div class="container">
+<div id="outer">
+    <div class="container" id="new">
         <!-- Content here -->
-    <h1>新規登録</h1>
+        <div></div>
+    <h1 class="new_option">new registration</h1>
     </br>
     新規登録をお願いします
-    <form id = "form" method = "post" action="iyo.php">
+    <form method = "post" action="iyo.php" id="new_user">
         <div class="form-group">
-            <label class="naimu" for="exampleInputEmail1">userid</label>
-            <input name="user_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
+            <label class="naimu smallfont" for="exampleInputEmail1" >userid</label>
+            <input name="user_name" type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name" required>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input name="gmail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="exampleInputEmail1" class="smallfont">Email address</label>
+            <input name="gmail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
         </div>
         <div class="form-group">
-            <label class="pass" for="exampleInputPassword1">Password</label>
-            <input name="netpass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label class="pass smallfont" for="exampleInputPassword1" >Password</label>
+            <input name="netpass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
         </div>
         </br>
         <input class="btn btn btn-primary" type="submit" value="新規登録">
     </form>
 　　</div>
-<div class="circle" id="js-circle"></div>
+</div>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 
 </body>
 </html>

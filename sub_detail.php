@@ -15,9 +15,37 @@ function connect() {
     return $dbh;
 }
 
+function button() {
+    $dbh = connect();
+    $sql = 'SELECT like_count FROM life_style WHERE hobby_card = :hobby_card AND com_id = :com_id limit 1';
+    $stmt = $dbh->prepare($sql);
+    $stmt->BindValue(':hobby_card',$_SESSION['card']);
+    $stmt->BindValue(':com_id',$_SESSION['id']);
+    $stmt->execute();
+
+    while(1) {
+        $recs = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if(empty($recs['like_count'])) 
+    { 
+        ?>
+        <button type="button" name="send" id ="good_card" class="btn btn-outline-info love">いいね!</button>
+        <?php 
+        break;
+    } 
+    else 
+    {
+        ?>
+        <button type="button" name="send" id ="good_card" class="btn btn-outline-info love active">解除!</button>
+        <?php
+        break;
+    }
+    }
+}
+
 function select() {
     $dbh = connect();
-    $sql = 'SELECT distinct picture, hobby_card FROM life_style WHERE hobby_card = :hobby_card AND picture = :picture';
+    $sql = 'SELECT DISTINCT * FROM life_style WHERE hobby_card = :hobby_card AND picture = :picture limit 1';
     $stmt = $dbh->prepare($sql);
     $stmt->BindValue(':hobby_card',$_SESSION['card']);
     $stmt->BindValue(':picture',$_SESSION['pic']);
@@ -30,14 +58,16 @@ function select() {
         {
             break;
         }
+        
          ?>
          <div class="main_range">
              <div class="main_img"><img src="<?php echo $rec['picture'] ?>" alt="card"></div>
              <div class="main_text"><p>カード名：<?php echo $rec['hobby_card'] ?></p></div>
-             <form id = "forms" action="sub_detail.php" method="post">
+             
                 <input type="hidden" name="simei" value="<?php echo $_SESSION['id'] ?>">
-                <input type="submit" name="send" class="btn btn-info love" value="いいね">
-            </form>
+                <input type="hidden" name="card" value="<?php echo $_SESSION['card'] ?>">
+                <?php button(); ?>
+             
          </div>
          <?php
     }
@@ -75,39 +105,6 @@ function select1() {
     }
 }
 
-function good() {
-    if(isset($_POST['simei'])) {
-        $dbh = connect();
-        $sql = 'SELECT * FROM life_style WHERE com_id = :com_id AND hobby_card = :hobby_card';
-        $stmt = $dbh->prepare($sql);
-        $stmt->BindValue(':com_id',$_SESSION['id']);
-        $stmt->BindValue(':hobby_card',$_SESSION['card']);
-        $stmt->execute();
-        $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if(!empty($rec)) {
-            $sql = 'DELETE FROM life_style WHERE com_id = :com_id AND hobby_card = :hobby_card ';
-            $stmt = $dbh->prepare($sql);
-            $stmt->BindValue(':com_id',$_SESSION['id']);
-            $stmt->BindValue(':hobby_card',$_SESSION['card']);
-            $stmt->execute();
-        }
-
-        else {
-            $sql = 'INSERT INTO `life_style`(`hobby_card`, `picture`, `com_id`, `category`, `types`) SELECT hobby_card, picture, :com_id, category, types FROM life_style WHERE hobby_card = :hobby_card';
-            $stmt = $dbh->prepare($sql);
-            $stmt->BindValue(':com_id',$_SESSION['id']);
-            $stmt->BindValue(':hobby_card',$_SESSION['card']);
-            $stmt->execute();
-        }       
-    }
-}
-
-if(isset($_POST['send'])) {
-    good();
-}
-
-
 ?>
 
 <!doctype html>
@@ -119,7 +116,16 @@ if(isset($_POST['send'])) {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <title>アップロード</title>
+<style>
+    #good_card.active{
+        background-color: #59dada;
+        color: #fff;
+    }
+
+</style>
 </head>
 <body>
 <div class="container">
@@ -135,7 +141,52 @@ if(isset($_POST['send'])) {
     </div>
     <a href="like.php" class = "back">前に戻る</a>
 </div>
-<script type="text/javascript" src="js/app.js"></script>
+
+<script>
+    $(function(){
+        
+    $('#good_card').on('click',function(){
+
+
+    $.ajax({
+    url:'db_good.php', //送信先
+    type:'POST', //送信方法
+    data:{
+    'card' : $('input:hidden[name="card"]').val(),
+    'simei' : $('input:hidden[name="simei"]').val()
+    }
+    })
+    // Ajax通信が成功した時
+    .done( function(data) {
+        if(data == 1){
+            $('#good_card').text('解除!');
+            $('#good_card').addClass('active');
+        }
+        else
+        {
+            $('#good_card').text('いいね!');
+            $('#good_card').removeClass('active');
+        }
+    
+    console.log(data[0]);
+    console.log('通信成功');
+    console.log(data);
+    })
+    // Ajax通信が失敗した時
+    .fail( function(jqXHR, textStatus, errorThrown) {
+        console.log('通信失敗');
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+    })
+    });
+
+}); //END
+
+
+
+</script>
+
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

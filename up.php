@@ -18,9 +18,27 @@ function select1() {
     $stmt->BindValue(':user_id',$_SESSION['id']);
     $stmt->BindValue(':pic_id',0);
     $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $rec) {
-        echo $rec['picture'];
-    }
+    
+    while(1){
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if(!empty($rec['picture']))
+        {
+            ?>
+                <img src="<?php echo $rec['picture'] ?>" alt="" data-toggle="modal" data-target="#exampleModalCenter1">
+            <?php
+            
+        break;
+        }
+        else{
+            echo '<i class="fas fa-camera fa-5x" data-toggle="modal" data-target="#exampleModalCenter1"></i>';
+            echo '<br>';
+            echo '画像を選択してください';
+            break;
+        }
+
+
+        }
 }
 
 function select3() {
@@ -31,9 +49,26 @@ function select3() {
     $stmt->BindValue(':user_id',$_SESSION['id']);
     $stmt->BindValue(':pic_id',$i);
     $stmt->execute();
-    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $recs) {
-    echo $recs['picture'];
-    }
+    while(1){
+        $recs = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if(!empty($recs['picture']))
+        {
+            ?>
+                <img src="<?php echo $recs['picture'] ?>" data-toggle="modal" data-target="#exampleModal<?php echo $i; ?>" id="<?php echo $i; ?>">
+            <?php
+            
+        break;
+        }
+        else{
+            ?>
+            <i class="fas fa-camera fa-3x" id = "option_image" data-toggle="modal" data-target="#exampleModal<?php echo $i; ?>" id="<?php echo $i; ?>"><h6>クリック</h6></i>
+            <?php
+            break;
+        }
+
+
+        }
 }
 
 function insert1() {
@@ -384,6 +419,7 @@ if(isset($_POST["sent"])) {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/st.css">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -395,7 +431,8 @@ if(isset($_POST["sent"])) {
 <div class="container" id="gallery">
 <!-- Button trigger modal -->
     <div class="main">
-        <img src="<?php select1() ?>" alt="" data-toggle="modal" data-target="#exampleModalCenter1">
+    <?php select1() ?>
+        
     </div>
 
 <!-- Modal -->
@@ -428,7 +465,7 @@ if(isset($_POST["sent"])) {
     for($i = 1; $i<=5; $i++){
     ?>
 
-        <img src="<?php select3() ?>" data-toggle="modal" data-target="#exampleModal<?php echo $i; ?>" id="<?php echo $i; ?>">
+        <?php select3() ?>
         <?php
         echo '<div class="modal fade" id="exampleModal'.$i.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         ?>

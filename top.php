@@ -2,28 +2,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/st.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    
+</style>
 <title>トップページ</title>
 </head>
 <body>
 <div class="container top_page">
   <!-- Content here -->
-    <h4>ログイン</h4>
+    <h1 class="loguin_font">login form</h1>
     </br>
-    <div class="loguin">
+    <div class="login">
         <form id = "mit" method = "post" action="log.php"> 
             <div class="form-group mail">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="exampleInputEmail1" class="smallfont">Email address</label>
                 <input name="gmail" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
 
             <div class="form-group pass">
-                <label for="exampleInputPassword1">Password</label>
-                <input name="netpass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="exampleInputPassword1" class="smallfont">Password</label>
+                <input name="netpass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
             </div>
-            <button  type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            <button  type="submit" class="btn btn-primary btn-lg btn-block">login</button>
         </form>
 
         <div class="sinki">

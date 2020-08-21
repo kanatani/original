@@ -111,15 +111,14 @@ while(1)
     $room = $rec['room_id'];
     ?>
     <div id = "pos">
-        <ul class="message chatroom">
+        <ul class="message ">
             <li>
-                <div class="alert alert-light" role="alert" id="chat_room">
+                <div id="chat_room">
                     <a href="newms.php?room=<?php echo $rec['room_id']; ?>&simei=<?php echo $rec['post_id']; ?>" class="alert-link postname"　onclick="document.download<?php echo $i ;?>.submit();return false;">
                     <img src="<?php image($rec['post_id']) ?>" alt="">
                         ニックネーム: <?php com_human($rec['post_id']) ?>
                     </a>
                 </div>
-                
             </li>
             <br>
         </ul>
