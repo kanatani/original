@@ -30,13 +30,13 @@ function select() {
         ?>
         <div class="li">
         <form id="form" action="syou.php" method="post">
-        <div class="col list">
-        <div class="card" style="width: 18rem;">
+        <div class="list">
+        <div class="list_img">
         <input type="hidden" name="her_id" value="<?php echo $rec['user_id']; ?>">
         <input type="image" class="img" src="<?php echo $rec['picture']; ?>" alt="">
         </form>
         <div class="card-body list-text">
-        <p class="card-text"><?php echo $rec['simei'];  echo $rec['age']; ?></p>
+        <p class="card-text"><?php echo $rec['simei']; echo "<br>"; echo $rec['age']; echo "歳"; ?></p>
         </div>
         </div>
         </div>
@@ -63,19 +63,19 @@ function select() {
 <title>ユーザー一覧</title>
 </head>
 <body>
-<div class="container nav">
+    <div>
     <nav id="global_navi" class = "nav">
                 <ul>
                     <li class="current">
                         <a href="look.php">
                             <i class="fas fa-search"></i>
-                            search
+                                探す
                         </a>
                     </li>
                     <li>
                         <a href="good.php">
                             <i class="fas fa-thumbs-up"></i>
-                                good 
+                                いいね 
                         </a>
                     </li>
                     <li>
@@ -114,7 +114,9 @@ function select() {
                     </li>
                 </ul>
         </nav>
-<div class="row">
+    </div>
+<div class="container nav">
+<div class="">
 <?php
 select();
 

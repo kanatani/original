@@ -163,6 +163,7 @@ if(isset($_POST["send"])) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href='https://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.5.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="css/icons.css" />
 <link rel="stylesheet" href="css/st.css">
@@ -174,20 +175,55 @@ if(isset($_POST["send"])) {
 <body>
 
     <div class="container nav">
-        <nav id="global_navi">
-                <ul>
-                    <li class="current"><a href="look.php">search</a></li>
-                    <li><a href="good.php">good</a></li>
-                    <li><a href="like.php">趣味</a></li>
-                    <li><a href="chat.php">チャット</a></li>
-                    <li ><a href="pro.php">プロフィール</a></li>
-                    <li><a href="#">その他</a>
-                    <ul id="ot">
-                        <li id="other"><a href="toi.php">お問い合わせ</a></li>
-                        <li id="other"><a href="out.php">ログアウト</a></li>
+    <nav id="global_navi" class = "nav">
+                    <ul>
+                        <li>
+                            <a href="look.php">
+                                <i class="fas fa-search"></i>
+                                    探す
+                            </a>
+                        </li>
+                        <li >
+                            <a href="good.php">
+                                <i class="fas fa-thumbs-up"></i>
+                                    いいね
+                            </a>
+                        </li>
+                        <li>
+                            <a href="like.php">
+                                <i class="far fa-kiss-wink-heart"></i>
+                                    趣味
+                            </a>
+                        </li>
+                        <li class="current">
+                            <a href="chat.php">
+                                <i class="fas fa-comments"></i>
+                                    チャット
+                            </a>
+                            </li>
+                        <li >
+                            <a href="pro.php">
+                                <i class="fas fa-user-alt"></i>
+                                    プロフィール
+                            </a>
+                        </li>
+                        <li><a href="#">その他</a>
+                        <ul id="ot">
+                            <li id="other">
+                                <a href="toi.php">
+                                    <i class="fas fa-question-circle"></i>
+                                        お問い合わせ
+                                </a>
+                            </li>
+                            <li id="other">
+                                <a href="out.php">
+                                    <i class="fas fa-sign-out"></i>
+                                        ログアウト
+                                </a>
+                            </li>
+                        </ul>
+                        </li>
                     </ul>
-                    </li>
-                </ul>
         </nav>
         <div id="gallery">
             <div class = "main">
@@ -230,7 +266,6 @@ if(isset($_POST["send"])) {
                     <input type="hidden" name="user_id" id="user" value="<?php echo $_SESSION['id']; ?>" >
                     <input type="hidden" name="scroll_top"  class="st">
                     <section class="content">
-
                         <ol style = "list-style-type:none;" class="grid">
                             <li class="grid__item">
                                 <button type="submit" name="send" id="se" class="icobutton icobutton--thumbs-up"><span class="fa fa-thumbs-up"></span></button>

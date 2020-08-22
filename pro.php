@@ -166,13 +166,13 @@ function bad_card(){
                 <ul>
                     <li><a href="look.php">
                         <i class="fas fa-search"></i>
-                        search
+                            探す
                         </a>
                     </li>
                     <li>
                         <a href="good.php">
                         <i class="fas fa-thumbs-up"></i>
-                            good 
+                            いいね
                         </a>
                     </li>
                     <li>

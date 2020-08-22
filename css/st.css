@@ -61,12 +61,11 @@
 }
 
 /* 新規登録 */
+#outer {
+  margin-top: 30px;
+}
+
 #new{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  -webkit-transform: translateY(-50%) translateX(-50%);
   margin: auto;
   text-align: center;
   width: 600px;
@@ -74,9 +73,18 @@
   justify-content: center;
   align-items: center;
 }
+
  .smallfont {
    letter-spacing: 4px;
  }
+
+/* 新規登録完了 */
+.insert_info {
+  margin: auto;
+  text-align: center;
+  width: 700px;
+}
+
 
 
 /* ログイン */
@@ -95,6 +103,7 @@
   margin: auto;
   justify-content: center;
   align-items: center; 
+  text-align: center;
 }
 
 .sinki {
@@ -368,32 +377,36 @@ li.right-side {
 /* 一覧 */
 .img {
   height: 300px;
+  width: 300px;
+  border-radius: 30px;
   object-fit: cover;
+  transition: 1.0s;
+}
+
+.img:hover {
+  transform:scale(1.1,1.1);
+  opacity: 0.7;
 }
 
 .li {
   margin-left: 15px;
+  border-radius: 20px;
+  float: left;
+  margin-bottom: 400px;
 }
 
 .list {
   margin-bottom: 30px;
-}
-
-#global_navi a{
-  color: #b7a077;
-}
-
-a:hover {
-  color: #988564;
-  font-weight: bold;
-  text-decoration: none;
+  border-radius: 20px;
 }
 
 /* ナビ */
 #global_navi {
   clear: both;
   overflow: hidden;
-  width: 980px;
+  width: 1200px;
+  margin: auto;
+  text-align: center;
 }
 
 #global_navi ul {
@@ -405,7 +418,6 @@ a:hover {
 #global_navi ul li {
   width: 162px;
   float: left;
-  margin-right: 1px;
   margin-bottom: 30px;
   text-align: center;
 }
@@ -416,6 +428,10 @@ a:hover {
   background-color: skyblue;
   color: #fff;
   text-decoration: none;
+}
+
+#global_navi ul li a:hover {
+  opacity: 0.7;
 }
 
 #global_navi ul li.current a {
@@ -563,9 +579,11 @@ tbody tr td {
 
 .now a{
   background-color: #99ffff;
+
 }
 
 .good_navi a:hover {
+  text-decoration: none;
   opacity: 0.7;
 }
 
@@ -588,6 +606,11 @@ tbody tr td {
   border-radius: 10px;
   height: 60px;
   width: 60px;
+  transition: 0.7s;
+}
+
+.item img:hover{
+  opacity: 0.5;
 }
 
 #hobby_card {
@@ -615,9 +638,9 @@ tbody tr td {
   padding: 15px;
 }
 
-.make a:hover{
+.make:hover {
+  /* text-decoration: none; */
   opacity: 0.7;
-  color: white;
 }
 
 
@@ -730,7 +753,6 @@ tbody tr td {
   margin: 10px;
   width: 30%;
   display: inline-block;
-  
 }
 
 .search-img {
@@ -738,7 +760,9 @@ tbody tr td {
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
+  transition: 0.7s;
 }
+
 
 /* 検索 */
 
@@ -922,3 +946,6 @@ li.right-side {
   cursor: pointer;
 }
 
+body a:hover {
+  text-decoration: none;
+}

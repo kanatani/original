@@ -41,10 +41,8 @@ function img() {
     if(!empty($rec)){
         $_SESSION['picture'] = $rec['picture'];
     }
-   
 }
 
-    
 try
 {
     $dbh = connect();

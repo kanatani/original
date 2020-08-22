@@ -49,7 +49,7 @@
         <div>
             <i class="fas fa-search fa-4x"></i>
             <h3>気の合う人を探そう</h3>
-            <p>好きなこと、嫌いなことを見ながら、自分と気が合いそうな人を見つけてみよう</p>
+            <p>好きなこと、嫌いなことを見ながら、自分と気が合いそうな人を見つけてみよう!</p>
         </div>
         <div>
             <i class="far fa-kiss-wink-heart fa-4x"></i>

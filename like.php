@@ -75,7 +75,7 @@ function search() {
             }
             ?>
             <li class="search-list">
-                <a href="sub_detail.php?card=<?php echo $rec['hobby_card'] ?>&pic=<?php echo $rec['picture']; ?>"><img src=<?php echo $rec['picture'];?> alt="hobby_card" class="search-img"></a>
+                <a href="sub_detail.php?card=<?php echo $rec['hobby_card'] ?>&pic=<?php echo $rec['picture']; ?>"><img class="search-img" src=<?php echo $rec['picture'];?> alt="hobby_card"></a>
                 <div class=""><?php echo $rec['hobby_card'];?></div>
             </li>
             
@@ -98,20 +98,23 @@ function search() {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <title>カード一覧</title>
+<style>
+
+</style>
 </head>
 <body>
-<div class="container ">
+<div class="container">
     <nav id="global_navi" class = "nav">
             <ul>
                 <li><a href="look.php">
                     <i class="fas fa-search"></i>
-                    search
+                    探す
                     </a>
                 </li>
                 <li>
                     <a href="good.php">
                     <i class="fas fa-thumbs-up"></i>
-                        good 
+                        いいね
                     </a>
                 </li>
                 <li class="current">
@@ -194,7 +197,7 @@ function search() {
     }
    ?>
    <br>
-   <div >
+   <div>
    <a href="pic_insert.php" class="make">自分で作成!</a>
    </div>
    

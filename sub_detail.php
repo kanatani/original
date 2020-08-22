@@ -89,8 +89,8 @@ function select1() {
         ?>
         <div class="li">
         <form id="" action="syou.php" method="post">
-        <div class="col list">
-        <div class="card" style="width: 18rem;">
+        <div class="list">
+        <div class="list_img">
         <input type="hidden" name="her_id" value="<?php echo $rec['user_id']; ?>">
         <input type="image" class="img" src="<?php echo $rec['picture']; ?>" alt="">
         </form>
