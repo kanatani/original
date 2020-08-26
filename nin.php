@@ -2,6 +2,40 @@
 try {
 session_start();
 
+function thank() {
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
+    $dbh = new PDO($dsn,$user,$password);
+    $dbh->query('SET NAMES utf8');
+
+    $onamae=$_POST['onamae'];
+    $lived=$_POST['lived'];
+    $live=$_POST['live'];
+    $age=$_POST['age'];
+    $learn=$_POST['learn'];
+    $job=$_POST['job'];
+    $intro=$_POST['intro'];
+
+    $onamae=htmlspecialchars($onamae);
+    $live=htmlspecialchars($live);
+    $lived=htmlspecialchars($lived);
+    $age=htmlspecialchars($age);
+    $learn=htmlspecialchars($learn);
+    $job=htmlspecialchars($job);
+    $intro=htmlspecialchars($intro); 
+
+    $sql = 'REPLACE INTO human (user_id,simei,lived,live,age,learn,job,intro) VALUES ("'.$_SESSION['id'].'","'.$onamae.'","'.$lived.'","'.$live.'","'.$age.'","'.$learn.'","'.$job.'","'.$intro.'")';
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+
+    header('Location: http://original-nao.jp/look.php');
+}
+
+if(isset($_POST['send'])){
+    thank();
+}
+
 $onamae=$_POST['onamae'];
 $lived=$_POST['lived'];
 $live=$_POST['live'];
@@ -33,6 +67,7 @@ $intro=htmlspecialchars($intro);
 <body>
 <div class="container">
     <div class="your_list">
+        <h2>こちらでお間違いないですか?</h2>
         <?php
         
             echo '<div>名前:'.$onamae.'</div></br>';
@@ -76,13 +111,14 @@ $intro=htmlspecialchars($intro);
             if($lived == '' || $live == '' || $age == '' || $learn == '' || $job == '')
             {
                 print'<form>';
-                print'<input type="button" onclick="history.back()" id="modoru" value="戻る">';
+                print'<input type="button" onclick="history.back()" id="submit" value="戻る">';
                 print'</form>';
             }
             else 
             {
             ?>
-                <form id="sub" method="post" action="thanks.php">
+            
+                <form id="sub" method="post" action="nin.php">
                     <input type="hidden" name="onamae" value="<?php echo $onamae; ?>">
                     <input type="hidden" name="lived" value="<?php echo $lived; ?>">
                     <input type="hidden" name="live" value="<?php echo $live; ?>">
@@ -90,8 +126,8 @@ $intro=htmlspecialchars($intro);
                     <input type="hidden" name="learn" value="<?php echo $learn; ?>">
                     <input type="hidden" name="job" value="<?php echo $job; ?>">
                     <input type="hidden" name="intro" value="<?php echo $intro; ?>">
-                    <input type="button" onclick="history.back()" id="modoru" value="戻る">
-                    <input type="submit" value="送信">
+                    <input type="button" onclick="history.back()" id="submit" value="戻る">
+                    <input type="submit" name="send" id="submit" value="送信">
                 </form>
             <?php
             }
@@ -105,6 +141,8 @@ catch (expection $e)
 }
 ?>
 </div>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>
 

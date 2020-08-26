@@ -6,9 +6,9 @@ if(isset($_POST["her_id"])) {
 }
 
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -173,58 +173,59 @@ if(isset($_POST["send"])) {
 
 </head>
 <body>
-
-    <div class="container nav">
-    <nav id="global_navi" class = "nav">
-                    <ul>
-                        <li>
-                            <a href="look.php">
-                                <i class="fas fa-search"></i>
-                                    探す
+    <header>
+        <nav id="global_navi" class = "nav">
+                <ul>
+                    <li class="current">
+                        <a href="look.php">
+                            <i class="fas fa-search"></i>
+                                探す
+                        </a>
+                    </li>
+                    <li>
+                        <a href="good.php">
+                            <i class="fas fa-thumbs-up"></i>
+                                いいね 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="like.php">
+                            <i class="far fa-kiss-wink-heart"></i>
+                                趣味
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.php">
+                            <i class="fas fa-comments"></i>
+                                チャット
+                        </a>
+                        </li>
+                    <li >
+                        <a href="pro.php">
+                            <i class="fas fa-user-alt"></i>
+                                プロフィール
+                        </a>
+                    </li>
+                    <li><a href="#">その他</a>
+                    <ul id="ot">
+                        <li id="other">
+                            <a href="toi.php">
+                                <i class="fas fa-question-circle"></i>
+                                    お問い合わせ
                             </a>
                         </li>
-                        <li >
-                            <a href="good.php">
-                                <i class="fas fa-thumbs-up"></i>
-                                    いいね
+                        <li id="other">
+                            <a href="out.php">
+                                <i class="fas fa-sign-out"></i>
+                                    ログアウト
                             </a>
-                        </li>
-                        <li>
-                            <a href="like.php">
-                                <i class="far fa-kiss-wink-heart"></i>
-                                    趣味
-                            </a>
-                        </li>
-                        <li class="current">
-                            <a href="chat.php">
-                                <i class="fas fa-comments"></i>
-                                    チャット
-                            </a>
-                            </li>
-                        <li >
-                            <a href="pro.php">
-                                <i class="fas fa-user-alt"></i>
-                                    プロフィール
-                            </a>
-                        </li>
-                        <li><a href="#">その他</a>
-                        <ul id="ot">
-                            <li id="other">
-                                <a href="toi.php">
-                                    <i class="fas fa-question-circle"></i>
-                                        お問い合わせ
-                                </a>
-                            </li>
-                            <li id="other">
-                                <a href="out.php">
-                                    <i class="fas fa-sign-out"></i>
-                                        ログアウト
-                                </a>
-                            </li>
-                        </ul>
                         </li>
                     </ul>
+                    </li>
+                </ul>
         </nav>
+    </header>
+    <div class="container nav">
         <div id="gallery">
             <div class = "main">
                 <img class="main_img" src="<?php select1() ?>" alt="">
@@ -288,7 +289,7 @@ $(function(){
 $('#se').on('click',function(){
 
  $.ajax({
-  url:'dbname.php', //送信先
+  url:'http://original-nao.jp/dbname.php', //送信先
   type:'POST', //送信方法
   data:{
    'com_id' : $('input:hidden[name="compassion_id"]').val(),

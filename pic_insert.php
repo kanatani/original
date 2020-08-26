@@ -2,9 +2,9 @@
 session_start();
 
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -37,7 +37,7 @@ function insert() {
                         $stmt = $dbh->prepare($sql);
                         $stmt->execute();
                         $dbh = null;
-                        header('Location: http://localhost/original/subject/like.php');
+                        header('Location: http://original-nao.jp/like.php');
                     }
                 else 
                 {
@@ -76,7 +76,7 @@ function insert() {
 <div class="container">
     <div id="make_card">
         <form action="pic_insert.php" method="post" id = "make_form" enctype="multipart/form-data">
-        <h4 class="cardselect">カード作成</h4>
+        <h3 class="cardselect">カード作成</h3>
             <label>
                 <span class="filelabel">
                     <i class="fas fa-camera fa-2x"></i>

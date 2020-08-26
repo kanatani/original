@@ -2,9 +2,9 @@
 session_start();
 
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -58,17 +58,15 @@ function select2() {
             ?>
                 <img src="<?php echo $recs['picture']; ?>"  data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
             <?php
-            
         break;
         }
-        else{
+        else
+        {
             echo '<i class="fas fa-camera fa-3x " id = "option_image"></i>';
-            
             break;
         }
         }
     }
-
 
 function intro() {
     $dbh = connect();
@@ -161,53 +159,59 @@ function bad_card(){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container nav">
+    <header>
         <nav id="global_navi" class = "nav">
                 <ul>
-                    <li><a href="look.php">
-                        <i class="fas fa-search"></i>
-                            探す
+                    <li>
+                        <a href="look.php">
+                            <i class="fas fa-search"></i>
+                                探す
                         </a>
                     </li>
                     <li>
                         <a href="good.php">
-                        <i class="fas fa-thumbs-up"></i>
-                            いいね
+                            <i class="fas fa-thumbs-up"></i>
+                                いいね 
                         </a>
                     </li>
                     <li>
                         <a href="like.php">
-                        <i class="far fa-kiss-wink-heart"></i>
-                            趣味
+                            <i class="far fa-kiss-wink-heart"></i>
+                                趣味
                         </a>
                     </li>
-                    <li><a href="chat.php">
-                    <i class="fas fa-comments"></i>
-                        チャット
+                    <li>
+                        <a href="chat.php">
+                            <i class="fas fa-comments"></i>
+                                チャット
                         </a>
-                    </li>
-                    <li class="current"><a href="pro.php">
-                    <i class="fas fa-user-alt"></i>
-                        プロフィール</a>
+                        </li>
+                    <li class="current">
+                        <a href="pro.php">
+                            <i class="fas fa-user-alt"></i>
+                                プロフィール
+                        </a>
                     </li>
                     <li><a href="#">その他</a>
                     <ul id="ot">
                         <li id="other">
                             <a href="toi.php">
-                            <i class="fas fa-question-circle"></i>
-                                お問い合わせ
-                            </a></li>
+                                <i class="fas fa-question-circle"></i>
+                                    お問い合わせ
+                            </a>
+                        </li>
                         <li id="other">
                             <a href="out.php">
-                            <i class="fas fa-sign-out"></i>
-                                ログアウト
+                                <i class="fas fa-sign-out"></i>
+                                    ログアウト
                             </a>
                         </li>
                     </ul>
                     </li>
                 </ul>
         </nav>
-    
+    </header>
+    <div class="container nav">
         <div id="gallery">
             <div class = "main">
                 <?php select1() ?>

@@ -7,9 +7,9 @@ $_SESSION['pic'] = $_GET['pic'];
 
 }
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -149,7 +149,7 @@ function select1() {
 
 
     $.ajax({
-    url:'db_good.php', //送信先
+    url:'http://original-nao.jp/db_good.php', //送信先
     type:'POST', //送信方法
     data:{
     'card' : $('input:hidden[name="card"]').val(),

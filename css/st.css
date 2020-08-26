@@ -79,11 +79,17 @@
  }
 
 /* 新規登録完了 */
+#insert {
+  position: relative;
+}
+
+
 .insert_info {
-  margin: auto;
+  margin: 300px auto;
   text-align: center;
   width: 700px;
 }
+
 
 
 
@@ -110,12 +116,30 @@
   margin-top: 40px;
   text-align: center;
 }
+
 .sinki a {
   display: block;
+  
 }
+
 .sinki a:hover {
   opacity: 0.7;
 }
+
+.return {
+  margin-top: 40px;
+}
+
+.return a{
+  display: block;
+  transition: 0.5s;
+}
+
+.return a:hover{
+  opacity: 0.5;
+}
+
+
 
 /* ログイン完了 */
 .parent {
@@ -165,36 +189,7 @@
 
 /* イントロ自己紹介 */
 
-#entry {
-  margin-top: 30px;
-}
 
-#entry dl dt,
-#entry dl dd  {
-padding: 10px;
-}
-
-#entry #simei{
-  width:15em;
-  padding: 3px;
-}
-
-#entry dl dt  {
-  width: 13em;
-  float: left;
-  clear: both;
-}
-
-#entry  #my_like{
-  width: 36em;
-  height: 15em;
-}
-
-#submit_btn {
-  display: inline;
-  text-align: center;
-  margin: auto;
-}
 
 /* プロフィール */
 #galleries {
@@ -375,6 +370,14 @@ li.right-side {
 }
 
 /* 一覧 */
+
+.look_text {
+  margin: auto;
+  text-align: center;
+  padding:30px;
+  font-family: 'Source Code Pro', monospace;
+}
+
 .img {
   height: 300px;
   width: 300px;
@@ -401,24 +404,30 @@ li.right-side {
 }
 
 /* ナビ */
+header{
+  width: 100%;
+}
 #global_navi {
   clear: both;
   overflow: hidden;
-  width: 1200px;
+  width: 100%;
+  background-color: skyblue;
   margin: auto;
   text-align: center;
 }
 
 #global_navi ul {
   list-style: none;
-  margin-bottom: 0px;
-  padding: 0px;
+  
+  margin: auto;
+  text-align: center;
 }
 
 #global_navi ul li {
   width: 162px;
   float: left;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   text-align: center;
 }
 
@@ -428,6 +437,7 @@ li.right-side {
   background-color: skyblue;
   color: #fff;
   text-decoration: none;
+  text-align: center;
 }
 
 #global_navi ul li a:hover {
@@ -435,7 +445,8 @@ li.right-side {
 }
 
 #global_navi ul li.current a {
-  background-color: #44FFFF;
+  background-color: #99FFFF;
+  border-radius: 10px;
 }
 
 #global_navi ul li.current a:hover {
@@ -444,11 +455,11 @@ li.right-side {
 
 #ot {
   display: none;
-  }
+}
 
-#ot #other {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+
+#ot #other a{
+  text-align: left;
 }
 
 .main img {
@@ -460,6 +471,7 @@ li.right-side {
 .thumb  {
   margin-top: 30px;
 }
+
 .detail_box  {
   margin-top: 30px;
   border-top: solid 0.7px;
@@ -523,11 +535,13 @@ tbody tr td {
     background-color: skyblue;
     color: #fff;
     border-radius: 23px;
+    transition: 1.0s;
 }
 
 .change:hover  {
   opacity: 0.7;
   color: #fff;
+
 }
 
 .check {
@@ -600,6 +614,8 @@ tbody tr td {
   display: inline-block;
   padding: 0px 10px;
   vertical-align: top;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .item img{
@@ -679,6 +695,7 @@ tbody tr td {
   border-radius: 3em;
   padding: 10px 20px;
   display: inline-block;
+  transition: 0.7s;
 }
 
 .filelabel:hover {
@@ -691,6 +708,8 @@ tbody tr td {
 }
 
 .cardselect {
+  padding-bottom: 30px;
+  text-align: center;
   font-family: 'Caveat', cursive;
 }
 
@@ -753,6 +772,8 @@ tbody tr td {
   margin: 10px;
   width: 30%;
   display: inline-block;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .search-img {

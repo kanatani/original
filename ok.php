@@ -10,9 +10,9 @@
 <?php
 try
 {
-$dsn='mysql:dbname=original;host=localhost';
-$user='root';
-$password='';
+$dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+$user = 'LAA1138637';
+$password = 'Naokiokane';
 $dbh = new PDO($dsn,$user,$password);
 $dbh->query('SET NAMES utf8');
 
@@ -28,13 +28,21 @@ $content= htmlspecialchars($content);
 $sql='INSERT INTO toi(onamae,gmail,content) VALUES ("'.$simei.'","'.$gmail.'","'.$content.'")';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
+$dbh = null;
 
+$mail_sub='アンケートを受け付けました。';
+$mail_body=$simei."様へ\アンケートご協力ありがとうございました。";
+$mail_body=html_entity_decode($mail_body,ENT_QUOTES,"UTF-8");
+$mail_head="From:naokiokane0616@icloud.com";
+mb_language('Japanese');
+mb_internal_encoding("UTF-8");
+mb_send_mail($gmail,$mail_sub,$mail_body,$mail_head);
 ?>
 <div id="inquire">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Thank you for inquiring your opinion!
-            </h4>
+            <h3 class="card-title">Thank you for inquiring your opinion!
+            </h3>
             <p class="card-text">頂いたご意見を元に改善していきます！</p>
             <a href="look.php" class="btn btn-primary">サイトに戻る</a>
         </div>

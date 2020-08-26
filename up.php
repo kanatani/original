@@ -3,9 +3,9 @@
 session_start();
 
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -82,7 +82,7 @@ function insert1() {
     $stmt->BindValue(':picture',$file);
     $stmt->execute();
     $stmt = null;
-    header('Location: http://localhost/original/subject/up.php');
+    header('Location: http://original-nao.jp/up.php');
 }
 
 function insert2() {
@@ -115,7 +115,7 @@ function insert2() {
     $stmt->BindValue(':user_id',$_SESSION['id']);
     $stmt->execute();
     $stmt = null;
-    header('Location: http://localhost/original/subject/up.php');
+    header('Location: http://original-nao.jp/up.php');
 }
 
 function delete() {

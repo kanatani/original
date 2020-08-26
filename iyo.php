@@ -18,9 +18,9 @@ $user_name = htmlspecialchars($user_name);
 $gmail = htmlspecialchars($gmail);
 $netpass = htmlspecialchars($netpass);
 
-$dsn = 'mysql:dbname=original;host=localhost';
-$user = 'root';
-$password = '';
+$dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+$user = 'LAA1138637';
+$password = 'Naokiokane';
 try
 {
 $dbh = new PDO($dsn,$user,$password);
@@ -50,10 +50,12 @@ else
 }
 $dbh =null;
 ?>
-<div class="insert_info">
-    <div class="alert alert-info insert_message" role="alert">
-        <?php echo '<h3>'.$smg.'</h3>' ?>
-        A simple primary alert with <?php echo $link ?>. Give it a click if you like.
+<div id="insert">
+    <div class="insert_info">
+        <div class="alert alert-info insert_message" role="alert">
+            <?php echo '<h3>'.$smg.'</h3>' ?>
+            <?php echo $link ?>.
+        </div>
     </div>
 </div>
 <?php

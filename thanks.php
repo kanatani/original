@@ -1,11 +1,9 @@
 <?php
 try {
 session_start();
-echo $_SESSION['id'];
-$dsn = 'mysql:dbname=original;host=localhost';
-$user = 'root';
-$password = '';
-
+$dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+$user = 'LAA1138637';
+$password = 'Naokiokane';
 $dbh = new PDO($dsn,$user,$password);
 $dbh->query('SET NAMES utf8');
 
@@ -26,10 +24,12 @@ $learn=htmlspecialchars($learn);
 $job=htmlspecialchars($job);
 $intro=htmlspecialchars($intro); 
 
-echo $onamae;
+
 $sql = 'REPLACE INTO human (user_id,simei,lived,live,age,learn,job,intro) VALUES ("'.$_SESSION['id'].'","'.$onamae.'","'.$lived.'","'.$live.'","'.$age.'","'.$learn.'","'.$job.'","'.$intro.'")';
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
+
+header('Location: http://localhost/original/subject/.php');
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -57,6 +57,8 @@ catch (expection $e)
 }
 ?>
 </div>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>
 

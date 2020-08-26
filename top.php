@@ -1,18 +1,18 @@
 <?php
 try{
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
 }
 
 function img() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     $sql = 'SELECT * FROM sub WHERE user_id = :user_id AND pic_id = :pic_id';
@@ -43,7 +43,7 @@ function login(){
 
     if (!isset($member['netpass'])) {
         echo '新規登録をお願いします。';
-        header('Location: http://localhost/original/subject/sinki.html');
+        header('Location: http://original-nao.jp/sinki.html');
     }
     else 
     {
@@ -57,12 +57,12 @@ function login(){
             $stmt = $dbh->prepare($sql);
             $stmt->BindValue(':user_id',$_SESSION['id']);
             $stmt->execute();
-            header('Location: http://localhost/original/subject/intro.php');
+            header('Location: http://original-nao.jp/intro.php');
         }
         else
         {
         img();
-        header('Location: http://localhost/original/subject/look.php');
+        header('Location: http://original-nao.jp/look.php');
         }
     }
 }
@@ -81,6 +81,7 @@ function login(){
 <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100&family=Mukta&family=Raleway&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/st.css">
+<link rel="shortcut icon" href="icon.ico">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
     
@@ -112,6 +113,12 @@ function login(){
             </br>
             <div class="alert alert-info" role="alert">
                 <a href="sinki.html" class="alert-link">新規登録</a>
+            </div>
+        </div>
+
+        <div class="return">
+            <div class="alert alert-primary" role="alert">
+                <a href="index.php" class="alert-link">トップページ</a>
             </div>
         </div>
     </div>

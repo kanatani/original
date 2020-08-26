@@ -8,7 +8,7 @@ body {
 
 /* トップページ */
 .back-img {
-  height: 700px;
+  height: 850px;
   position: relative;
 }
 
@@ -83,10 +83,22 @@ body {
   height: 550px;
 }
 
+#main_text {
+  opacity: 0;
+  transform:  translate(0,100px);
+  transition: all 1s;
+}
+
+#main_text.active{
+  opacity: 1;
+  transform:  translate(0,0);
+}
+
 .main_title {
   margin: 100px;
   letter-spacing: 4px;
 }
+
 #main_messages p{
   margin: 10px;
   letter-spacing: 4px;
@@ -98,12 +110,23 @@ body {
   margin: 50px;
 }
 
-
 #function {
   margin: 0 auto;
   text-align: center;
   background-color: #eeeeee;
   height: 700px;
+}
+
+#function_detail{
+  margin: 40px;
+  opacity: 0;
+  transform:  translate(0,100px);
+  transition: all 1s;
+}
+
+#function_detail.in{
+  opacity: 1;
+  transform:  translate(0,0);
 }
 
 #function_detail div{
@@ -172,7 +195,6 @@ footer {
 
 .form-control {
     color: white;
-    
     margin: auto;
 }
 
@@ -226,6 +248,7 @@ footer {
     margin-top: 300px;
     width: 50%;
     text-align: center;
+    background-color: aquamarine;
 }
 
 /* お問い合わせ */
@@ -240,7 +263,16 @@ footer {
   width: 70%;
 }
 
-
+.contain {
+  max-width:600px;
+  margin:0 auto;
+  text-align:center;
+  margin-top: 50px;
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border-radius:6px;
+  background-color:skyblue;
+}
 
 .container {
     max-width:600px;
@@ -250,7 +282,7 @@ footer {
     -webkit-border-radius:6px;
     -moz-border-radius:6px;
     border-radius:6px;
-    background-color:#FAFAFA;
+    background-color:skyblue;
   }
   .head {
     -webkit-border-radius:6px 6px 0px 0px;
@@ -308,6 +340,7 @@ footer {
     width:30%;
     color:#fff;
   }
+  
   #submit:hover {
     background:#19a08c;
   }

@@ -1,8 +1,8 @@
 <?php
 function connect() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -26,9 +26,9 @@ $netpass = filter_input(INPUT_POST, 'netpass');
 $gmail = filter_input(INPUT_POST, 'gmail', FILTER_VALIDATE_EMAIL);
 
 function img() {
-    $dsn = 'mysql:dbname=original;host=localhost';
-    $user = 'root';
-    $password = '';
+    $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+    $user = 'LAA1138637';
+    $password = 'Naokiokane';
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     $sql = 'SELECT * FROM sub WHERE user_id = :user_id AND pic_id = :pic_id';

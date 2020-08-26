@@ -1,9 +1,9 @@
 <?php
 $simei =$_POST['simei'];
 
-$dsn = 'mysql:dbname=original;host=localhost';
-$user = 'root';
-$password = '';
+$dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+$user = 'LAA1138637';
+$password = 'Naokiokane';
 try
 {
 $dbh = new PDO($dsn,$user,$password);
