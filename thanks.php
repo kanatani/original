@@ -29,7 +29,7 @@ $sql = 'REPLACE INTO human (user_id,simei,lived,live,age,learn,job,intro) VALUES
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 
-header('Location: http://localhost/original/subject/.php');
+header('Location: http://localhost/original/subject/look.php');
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
