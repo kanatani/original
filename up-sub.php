@@ -14,6 +14,58 @@ session_start();
 <title>アップロード</title>
 </head>
 <body>
+<header>
+    <nav id="global_navi" class = "nav">
+                <ul>
+                    <li class="current">
+                        <a href="look.php">
+                            <i class="fas fa-search"></i>
+                                探す
+                        </a>
+                    </li>
+                    <li>
+                        <a href="good.php">
+                            <i class="fas fa-thumbs-up"></i>
+                                いいね 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="like.php">
+                            <i class="far fa-kiss-wink-heart"></i>
+                                趣味
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chat.php">
+                            <i class="fas fa-comments"></i>
+                                チャット
+                        </a>
+                        </li>
+                    <li >
+                        <a href="pro.php">
+                            <i class="fas fa-user-alt"></i>
+                                プロフィール
+                        </a>
+                    </li>
+                    <li><a href="#">その他</a>
+                    <ul id="ot">
+                        <li id="other">
+                            <a href="toi.php">
+                                <i class="fas fa-question-circle"></i>
+                                    お問い合わせ
+                            </a>
+                        </li>
+                        <li id="other">
+                            <a href="out.php">
+                                <i class="fas fa-sign-out"></i>
+                                    ログアウト
+                            </a>
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+    </nav>
+</header>
 <div class="container">
 <?php
 try {

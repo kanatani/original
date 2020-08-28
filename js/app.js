@@ -1,7 +1,5 @@
 'use strict';
   
-  
-  
   $(function() {
     let nav = $('.nav');
 
