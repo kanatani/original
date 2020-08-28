@@ -61,7 +61,6 @@ try
     else 
     {
         session_start();
-        session_regenerate_id(true);
         $_SESSION['id'] = $member['id'];
         $_SESSION['user_name'] = $member['user_name'];
         if(empty($member['enter'])) {
@@ -105,7 +104,7 @@ try
 $dbh =null;
 } 
 catch(PDOException $e) {
-    print'接続されていません';
+    print'<h2 class="error">接続されていません</h2>';
 }
 ?>
 </div>

@@ -104,7 +104,8 @@ function select1() {
         <?php
     }
 }
-
+try
+{
 ?>
 
 <!doctype html>
@@ -184,10 +185,13 @@ function select1() {
 
 }); //END
 
-
-
 </script>
-
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">接続されていません</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

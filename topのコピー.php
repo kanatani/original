@@ -1,11 +1,9 @@
 <?php
-session_start();
 try{
 function connect() {
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
     $user = 'LAA1138637';
     $password = 'Naokiokane';
-
     $dbh = new PDO($dsn,$user,$password);
     $dbh->query('SET NAMES utf8');
     return $dbh;
@@ -30,8 +28,8 @@ function img() {
    
 }
 
+
 function login(){
-    session_start();
     $netpass = filter_input(INPUT_POST, 'netpass');
     $gmail = filter_input(INPUT_POST, 'gmail', FILTER_VALIDATE_EMAIL);
     $dbh = connect();
@@ -44,15 +42,14 @@ function login(){
     $member = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!isset($member['netpass'])) {
+        echo '新規登録をお願いします。';
         header('Location: http://original-nao.jp/sinki.html');
     }
     else 
     {
-        
+        session_start();
         $_SESSION['id'] = $member['id'];
-        
         $_SESSION['user_name'] = $member['user_name'];
-        
         if(empty($member['enter'])) {
             $dbh = connect();
             $sql = 'UPDATE loguin set enter = "good" WHERE id=:user_id';
@@ -64,7 +61,7 @@ function login(){
         else
         {
         img();
-        header('Location: http://original-nao.jp/pro.php');
+        header('Location: http://original-nao.jp/look.php');
         }
     }
 }
@@ -125,15 +122,15 @@ function login(){
         </div>
     </div>
 </div>
-<?php
-}
-}
-catch(PDOException $e) {
-    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
-}
-?>
+
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>
 </html>
-
+<?php
+    }
+}
+catch(PDOException $e) {
+    print'接続されていません';
+}
+?>

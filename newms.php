@@ -1,7 +1,7 @@
 <?php   
 session_start();
-session_regenerate_id(true);
-try { 
+
+
     if (isset($_GET['room'])) {
         $_SESSION['room']= $_GET['room'];
         $_SESSION['simei']= $_GET['simei'];
@@ -112,7 +112,9 @@ try {
 <title>チャット</title>
 </head>
 <body>
-
+<?php
+    try{
+?>
 <div class="container">
     <div>
         <a href="chat.php">
@@ -154,9 +156,9 @@ window.onload = function(){
 }
 </script>
 <?php
-} 
+}
 catch(PDOException $e) {
-    print'接続されていません';
+    print'<h2 class="error">接続されていません</h2>';
 }
 ?>
 <script type="text/javascript" src="js/app.js"></script>

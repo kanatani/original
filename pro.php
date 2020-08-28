@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 function connect() {
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
     $user = 'LAA1138637';
@@ -33,7 +32,7 @@ function select1() {
 
             echo '<i class="fas fa-camera fa-5x"></i>';
             echo '<br>';
-            echo '画像を選択してください';
+            echo 'プロフィール変更で画像を選択してください!';
             break;
         }
 
@@ -160,6 +159,10 @@ function bad_card(){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
+<?php
+try
+{
+?>
     <header>
         <nav id="global_navi" class = "nav">
                 <ul>
@@ -272,6 +275,12 @@ thumbFlame.addEventListener('click', function(event){
 });
 </script>
 <script src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error"ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </script>

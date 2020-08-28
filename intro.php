@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -11,6 +14,11 @@
 <title>アップロード</title>
 </head>
 <body class="body">
+    <?php
+    try
+    {
+    
+    ?>
     <div class="container">
         <div>
             <form id="entry" method="post" action="nin.php">
@@ -266,6 +274,12 @@
         </div>
     </div>
 <script type="text/javascript" src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">接続されていません</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

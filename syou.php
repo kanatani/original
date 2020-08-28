@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if(isset($_POST["her_id"])) {
@@ -153,10 +154,7 @@ function good() {
 if(isset($_POST["send"])) {
     good();
 }
-
 ?>
-
-
 <!doctype html>
 <html>
 <head>
@@ -174,6 +172,10 @@ if(isset($_POST["send"])) {
 
 </head>
 <body>
+    <?php
+    try
+    {
+    ?>
     <header>
         <nav id="global_navi" class = "nav">
                 <ul>
@@ -341,7 +343,14 @@ window.onload = function(){
 
 
 <script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+
 <script type="text/javascript" src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">接続されていません</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

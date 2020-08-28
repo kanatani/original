@@ -104,6 +104,10 @@ function search() {
 </style>
 </head>
 <body>
+    <?php
+    try
+    {
+    ?>
 <header>
     <nav id="global_navi" class = "nav">
                 <ul>
@@ -154,8 +158,8 @@ function search() {
                     </ul>
                     </li>
                 </ul>
-        </nav>
-    </header>
+    </nav>
+</header>
 <div class="container">
     <div>
         <form id="look" action="like.php" method="post">
@@ -205,11 +209,17 @@ function search() {
    ?>
    <br>
    <div>
-   <a href="pic_insert.php" class="make">自分で作成!</a>
+    <a href="pic_insert.php" class="make">自分で作成!</a>
    </div>
    
 </div>
 <script src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">接続されていません</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

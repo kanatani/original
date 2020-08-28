@@ -54,7 +54,7 @@ mb_send_mail($gmail,$mail_sub,$mail_body,$mail_head);
 }
 catch(Exception $e)
 {
-    print'ただいま障害によりご迷惑をおかけしております。';
+    print'<h2 class="error">接続されていません</h2>';
 }
 ?>
 <script type="text/javascript" src="js/app.js"></script>

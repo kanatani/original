@@ -8,6 +8,9 @@
 <title>お問い合わせ</title>
 </head>
 <body>
+<?php
+try{
+?>
     <div id="inquire">
         <h2>お問い合わせ</h2>
         <form id="entry" method="post" action="kakunin.php">
@@ -23,6 +26,12 @@
         </form>
 　　</div>
 <script type="text/javascript" src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

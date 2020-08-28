@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -13,8 +16,9 @@
 <body>
 <div class="container">
 <?php
+try {
 //画像アップロード
-session_start();
+
 for($i=0; $i<=5;$i++){
     if (!empty($_FILES['file'.$i.''] ['tmp_name'])){
         if(is_uploaded_file($_FILES['file'.$i.''] ['tmp_name'])) {
@@ -23,11 +27,11 @@ for($i=0; $i<=5;$i++){
             }
             $file = 'upload/' . basename($_FILES['file'.$i.'']['name']);
             $id = $i;
-            echo $id;
             if (move_uploaded_file($_FILES['file'.$i.'']['tmp_name'], $file)) {
                 $msg = 'こちらの写真に設定しますか?';
                 echo '<div id="galleries">';
-                echo '<div class="main">';
+                echo '<h1>画像確認</h1>';
+                echo '<div class="upload">';
                 echo '<img src="',$file,'" id="'.$i.'">';
                 echo '</div>';
                 echo '</div>';
@@ -57,5 +61,13 @@ for($i=0; $i<=5;$i++){
     </div>
 </div>
 <script type="text/javascript" src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
+<script src="js/bubbly-bg.js"></script>
+<script>bubbly();</script>
 </body>
 </html>

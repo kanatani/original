@@ -1,6 +1,8 @@
 <?php
 session_start();
-session_regenerate_id(true);
+try
+{
+
 
 function select() {
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
@@ -36,6 +38,7 @@ function select() {
         <?php
     }
 }
+
 ?>
 <!doctype html>
 <html>
@@ -104,20 +107,26 @@ function select() {
                 </ul>
         </nav>
     </header>
-<div class="container nav">
-    <div class="good_navi">
-        <div class="likes_link now"><a  href="good.php">自分から</a></div>
-        <div class="likes_link"><a href="gooded.php">相手から</a></div>
+    <div class="container nav">
+        <div class="good_navi">
+            <div class="likes_link now"><a  href="good.php">自分から</a></div>
+            <div class="likes_link"><a href="gooded.php">相手から</a></div>
+        </div>
+        
+        <div class="row">
+            <?php
+            select();
+            ?>
+        </div>
     </div>
-    
-    <div class="row">
-        <?php
-        select();
-        ?>
-    </div>
-</div>
 </div>
 <script src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

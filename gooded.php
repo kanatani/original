@@ -1,7 +1,5 @@
 <?php
 session_start();
-session_regenerate_id(true);
-
 
 
 function select() {
@@ -38,6 +36,7 @@ function select() {
         <?php
     }
 }
+
 ?>
 <!doctype html>
 <html>
@@ -54,6 +53,10 @@ function select() {
 <title>いいね</title>
 </head>
 <body>
+<?php
+try{
+?>
+
     <header>
         <nav id="global_navi" class = "nav">
                 <ul>
@@ -106,20 +109,26 @@ function select() {
                 </ul>
         </nav>
     </header>
-<div class="container boss">
-    <div class="good_navi">
-        <div class="likes_link"><a  href="good.php">自分から</a></div>
-        <div class="likes_link now"><a href="gooded.php">相手から</a></div>
+    <div class="container boss">
+        <div class="good_navi">
+            <div class="likes_link"><a  href="good.php">自分から</a></div>
+            <div class="likes_link now"><a href="gooded.php">相手から</a></div>
+        </div>
+        
+        <div class="row">
+            <?php
+            select();
+            ?>
+        </div>
     </div>
-    
-    <div class="row">
-        <?php
-        select();
-        ?>
-    </div>
-</div>
 </div>
 <script src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">接続されていません</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

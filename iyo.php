@@ -22,6 +22,10 @@ $netpass = htmlspecialchars($netpass);
 $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
 $user = 'LAA1138637';
 $password = 'Naokiokane';
+
+// $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
+// $user = 'LAA1138637';
+// $password = 'Naokiokane';
 try
 {
 $dbh = new PDO($dsn,$user,$password);
@@ -62,10 +66,9 @@ $dbh =null;
 <?php
 }
 catch(PDOException $e) {
-    print'接続されていません';
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
 }
 ?>
-
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

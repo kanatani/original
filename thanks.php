@@ -1,6 +1,7 @@
 <?php
-try {
 session_start();
+try {
+
 $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
 $user = 'LAA1138637';
 $password = 'Naokiokane';
@@ -49,11 +50,10 @@ header('Location: http://localhost/original/subject/look.php');
 <a href="intro.php">戻り</a>
 <a href="look.php">探す</a>
 
-    <?php 
-} 
-catch (expection $e) 
-{
-    echo 'エラーです';
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error"ただいま障がいによりご迷惑をおかけしております。</h2>';
 }
 ?>
 </div>

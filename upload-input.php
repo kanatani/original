@@ -8,6 +8,9 @@
 <title>アップロード</title>
 </head>
 <body>
+<?php
+try{
+?>
     <div class="container">
     <?php
     if (!empty($_FILES['file'] ['tmp_name'])){
@@ -37,6 +40,12 @@
             <input type="submit" value="読み込み">
         </form>
 　　</div>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -5,14 +10,20 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <title>ログアウト</title>
 </head>
 <body>
+  <?php
+  try
+    {
+  ?>
 <div class="connect">
   <?php
-  session_start();
+  
   if (isset($_SESSION['id'])) {
+    $_SESSION = array();
+  setcookie($_COOKIE[session_name()], '', time()-1);
+  session_destroy();
     ?>
         <div class="alert alert-success thanks" role="alert">
           <h4 class="alert-heading">THANK YOU!</h4>
@@ -22,6 +33,9 @@
         </div>
     <?php
     } else {
+      $_SESSION = array();
+      setcookie($_COOKIE[session_name()], '', time()-1);
+      session_destroy();
       ?>
       <div class="alert alert-success thanks" role="alert">
         <h4 class="alert-heading">session切れ</h4>
@@ -31,16 +45,19 @@
       </div>
   <?php
     }
-  $_SESSION = array();
-  setcookie($_COOKIE[session_name()], '', time()-1);
-  session_destroy();
-
+    
   ?>
 <script>
   
 </script>
 </div>
 <script src="js/bubbly-bg.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">接続されていません</h2>';
+}
+?>
 <script>bubbly();</script>
 </body>
 </html>

@@ -73,7 +73,11 @@ function insert() {
 }
 </style>
 </head>
-<body>  
+<body> 
+<?php
+try
+{
+?>
 <div class="container">
     <div id="make_card">
         <form action="pic_insert.php" method="post" id = "make_form" enctype="multipart/form-data">
@@ -118,6 +122,12 @@ if(isset($_POST["send"])) {
     });
 </script>
 <script src="js/bubbly-bg.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script>bubbly();</script>
 </body>
 </html>

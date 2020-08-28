@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_regenerate_id(true);
+
 
 function connectDB() {
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
@@ -203,17 +203,15 @@ $dbh = null;
 <div class="container">
         
 <?php   
-
 try {
     match();
     room();
-
 } 
 catch(PDOException $e) {
-    print'接続されていません';
+    print'<h2 class="error"ただいま障がいによりご迷惑をおかけしております。</h2>';
 }
 ?>
-
+</div>
 <script type="text/javascript" src="js/app.js"></script>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>

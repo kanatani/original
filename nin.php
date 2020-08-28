@@ -1,8 +1,8 @@
 <?php
-try {
 session_start();
-
+try {
 function thank() {
+    
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
     $user = 'LAA1138637';
     $password = 'Naokiokane';
@@ -25,7 +25,7 @@ function thank() {
     $job=htmlspecialchars($job);
     $intro=htmlspecialchars($intro); 
 
-    $sql = 'REPLACE INTO human (user_id,simei,lived,live,age,learn,job,intro) VALUES ("'.$_SESSION['id'].'","'.$onamae.'","'.$lived.'","'.$live.'","'.$age.'","'.$learn.'","'.$job.'","'.$intro.'")';
+    $sql = 'INSERT INTO human (user_id,simei,lived,live,age,learn,job,intro) VALUES ("'.$_SESSION['id'].'","'.$onamae.'","'.$lived.'","'.$live.'","'.$age.'","'.$learn.'","'.$job.'","'.$intro.'")';
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
 
@@ -138,7 +138,7 @@ $intro=htmlspecialchars($intro);
 } 
 catch (expection $e) 
 {
-    echo 'エラーです';
+    print'<h2 class="error">接続されていません</h2>';
 }
 ?>
 </div>

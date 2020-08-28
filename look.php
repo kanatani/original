@@ -1,7 +1,9 @@
 <?php
 session_start();
+try
+{
+
 function connect() {
-    
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
     $user = 'LAA1138637';
     $password = 'Naokiokane';
@@ -65,6 +67,9 @@ function select() {
 <title>ユーザー一覧</title>
 </head>
 <body>
+    <?php
+    
+    ?>
     <header>
     <nav id="global_navi" class = "nav">
                 <ul>
@@ -127,6 +132,12 @@ select();
 </div>
 </div>
 <script src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

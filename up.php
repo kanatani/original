@@ -413,6 +413,8 @@ if(isset($_POST["send"])) {
 if(isset($_POST["sent"])) {
     insert2();
 }
+try 
+{
 ?>
 <!doctype html>
 <html>
@@ -504,6 +506,12 @@ if(isset($_POST["sent"])) {
 
 </div>
 <script type="text/javascript" src="js/app.js"></script>
+<?php
+}
+catch(PDOException $e) {
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
+}
+?>
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>
