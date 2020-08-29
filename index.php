@@ -78,7 +78,7 @@
 <footer>
     <div id="footer_navi">
         <ul>
-            <li><a href="connect.php">top</a></li>
+            <li><a href="index.php">top</a></li>
             <li><a href="top.php">login</a></li>
             <li><a href="sinki.html">sign up</a></li>
         </ul>
