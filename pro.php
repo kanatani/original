@@ -23,7 +23,7 @@ function select1() {
         if(!empty($rec['picture']))
         {
             ?>
-                <img src="<?php echo $rec['picture']; ?>" data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
+                <img src="<?php echo $rec['picture']; ?>"  data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
             <?php
             
         break;
@@ -55,7 +55,7 @@ function select2() {
         if(!empty($recs['picture']))
         {
             ?>
-                <img src="<?php echo $recs['picture']; ?>"  data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
+                <img src="<?php echo $recs['picture']; ?>" class="img_modal" data-toggle="modal" data-target="#exampleModal<?php echo $i ;?>" id="<?php echo $i; ?>">
             <?php
         break;
         }
@@ -154,6 +154,7 @@ function bad_card(){
 <link rel="stylesheet" href="css/st.css">
 <link rel="shortcut icon" href="favicon.ico">
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>プロフィール確認</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -262,15 +263,20 @@ try
         <a class="change" href="up.php">プロフィール変更</a>
 　　</div>
 <script>
+<?php global $i; ?>
 let mainFlame = document.querySelector('#gallery .main');
 
 let thumbFlame = document.querySelector('#gallery .thumb');
+
+let thumbimg = document.querySelector('.thumb img');
 
 let mainImage = document.querySelector('.main img');
 
 thumbFlame.addEventListener('click', function(event){
     if (event.target.src) {
-        mainImage.src = event.target.src;
+        $('.img_modal').removeClass('bord');
+        $(event.target).addClass('bord');
+        mainImage.src = event.target.src;  
     }
 });
 </script>
@@ -278,7 +284,7 @@ thumbFlame.addEventListener('click', function(event){
 <?php
 }
 catch(PDOException $e) {
-    print'<h2 class="error"ただいま障がいによりご迷惑をおかけしております。</h2>';
+    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
 }
 ?>
 <script src="js/bubbly-bg.js"></script>

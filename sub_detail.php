@@ -3,9 +3,9 @@ session_start();
 
 if (isset($_GET['card'])) {
 $_SESSION['card'] = $_GET['card'];
-$_SESSION['pic'] = $_GET['pic'];
-
+$_SESSION['pic']= $_GET['pic'];
 }
+
 function connect() {
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
     $user = 'LAA1138637';
@@ -66,6 +66,8 @@ function select() {
              
                 <input type="hidden" name="simei" value="<?php echo $_SESSION['id'] ?>">
                 <input type="hidden" name="card" value="<?php echo $_SESSION['card'] ?>">
+                <input type="hidden" name="category" value="<?php echo $rec['category'] ?>">
+                <input type="hidden" name="type" value="<?php echo $rec['types'] ?>">
                 <?php button(); ?>
              
          </div>
@@ -155,6 +157,8 @@ try
     type:'POST', //送信方法
     data:{
     'card' : $('input:hidden[name="card"]').val(),
+    'category' : $('input:hidden[name="category"]').val(),
+    'types' : $('input:hidden[name="types"]').val(),
     'simei' : $('input:hidden[name="simei"]').val()
     }
     })

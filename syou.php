@@ -136,7 +136,7 @@ function good() {
         $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if(!empty($rec)) {
-            $sql = 'DELETE  FROM good WHERE user_id = :user_id AND com_id = :com_id';
+            $sql = 'DELETE FROM good WHERE user_id = :user_id AND com_id = :com_id';
             $stmt = $dbh->prepare($sql);
             $stmt->BindValue(':user_id',$_SESSION['id']);
             $stmt->BindValue(':com_id',$com_id);

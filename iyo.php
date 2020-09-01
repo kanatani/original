@@ -10,65 +10,15 @@
 </head>
 <body>
 
-<?php 
-$user_name = filter_input(INPUT_POST, 'user_name');
-$gmail = filter_input(INPUT_POST, 'gmail', FILTER_VALIDATE_EMAIL);
-$netpass = filter_input(INPUT_POST, 'netpass');
-
-$user_name = htmlspecialchars($user_name);
-$gmail = htmlspecialchars($gmail);
-$netpass = htmlspecialchars($netpass);
-
-$dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
-$user = 'LAA1138637';
-$password = 'Naokiokane';
-
-// $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
-// $user = 'LAA1138637';
-// $password = 'Naokiokane';
-try
-{
-$dbh = new PDO($dsn,$user,$password);
-$dbh->query('SET NAMES utf8');
-
-$sql = 'SELECT * FROM loguin WHERE gmail = :gmail';
-$stmt = $dbh->prepare($sql);
-$stmt->bindValue(':gmail', $gmail);
-$stmt->execute();   
-
-$rec = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if(!isset($rec['gmail'])) {  
-    $sql = 'INSERT INTO loguin (user_name,gmail,netpass) VALUES (:user_name, :gmail, :netpass)';
-    $stmt = $dbh->prepare($sql);
-    $stmt->BindValue(':user_name',$user_name);
-    $stmt->BindValue(':gmail',$gmail);
-    $stmt->BindValue(':netpass',$netpass);
-    $stmt->execute();
-    $smg = '登録が完了しました.';
-    $link = '<a href="top.php" class="alert-link">トップページ</a>';
-} 
-else 
-{
-    $smg = '既に登録済みのメールアドレスです';
-    $link = '<a href="sinki.html" class="alert-link">戻る</a>';
-}
-$dbh =null;
-?>
 <div id="insert">
     <div class="insert_info">
         <div class="alert alert-info insert_message" role="alert">
-            <?php echo '<h3>'.$smg.'</h3>' ?>
-            <?php echo $link ?>.
+            <?php echo '<h3>既に登録済みのメールアドレスです</h3>'; ?>
+            <?php echo '<a href="sinki.php" class="alert-link">戻る</a>'; ?>.
         </div>
     </div>
 </div>
-<?php
-}
-catch(PDOException $e) {
-    print'<h2 class="error">ただいま障がいによりご迷惑をおかけしております。</h2>';
-}
-?>
+
 <script src="js/bubbly-bg.js"></script>
 <script>bubbly();</script>
 </body>

@@ -44,7 +44,7 @@ function login(){
     $member = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!isset($member['netpass'])) {
-        header('Location: http://original-nao.jp/sinki.html');
+        header('Location: http://original-nao.jp/sinki.php');
     }
     else 
     {
@@ -114,7 +114,7 @@ function login(){
             新規登録がまだの方はこちらにアクセスしてください。
             </br>
             <div class="alert alert-info" role="alert">
-                <a href="sinki.html" class="alert-link">新規登録</a>
+                <a href="sinki.php" class="alert-link">新規登録</a>
             </div>
         </div>
 

@@ -36,8 +36,6 @@ function select1() {
             echo '画像を選択してください';
             break;
         }
-
-
         }
 }
 
@@ -147,7 +145,7 @@ function intro() {
                 <tr>
                     <th>出身地</th>
                     <td>
-                    <select name="lived">
+                    <select class="form-control form-control-sm" name="lived">
                     <option value="">選択してください</option>
                     <option value="北海道">北海道</option>
                     <option value="青森県">青森県</option>
@@ -202,7 +200,7 @@ function intro() {
                 <tr>
                     <th>住居</th>
                     <td>
-                    <select name="live">
+                    <select class="form-control form-control-sm" name="live">
                     <option value="">選択してください</option>
                     <option value="北海道">北海道</option>
                     <option value="青森県">青森県</option>
@@ -257,7 +255,7 @@ function intro() {
                 <tr>
                     <th>年齢</th>
                     <td>
-                    <select name="age">
+                    <select class="form-control form-control-sm" name="age">
                     <option value="">-</option>
                     <option value="0" selected>0</option>
                     <option value="1">1</option>
@@ -365,7 +363,7 @@ function intro() {
                 <tr>
                     <th>学歴</th>
                     <td>
-                    <select name="learn">
+                    <select class="form-control form-control-sm" name="learn">
                     <option value="">選択してください</option>
                     <option value="高卒">高卒</option>
                     <option value="大学卒">大学卒</option>
@@ -378,7 +376,7 @@ function intro() {
                 <tr>
                     <th>仕事</th>
                     <td>
-                    <select name="job">
+                    <select class="form-control form-control-sm" name="job">
                     <option value="">選択してください</option>
                     <option value="公務員">公務員</option>
                     <option value="経営者・役員">経営者・役員</option>
@@ -400,7 +398,8 @@ function intro() {
                 </tr>
             </tbody>
         </table>
-        <input type="submit" class="btn btn-outline-primary submit" name="sent" value="sousin">
+        <button type="submit" name="sent" class="btn btn-info submit">基本情報変更</button>
+        
     </form>
 </div>
     <?php
@@ -430,60 +429,9 @@ try
 <title>プロフィール変更</title>
 </head>
 <body>
-    <header>
-            <nav id="global_navi" class = "nav">
-                <ul>
-                    <li class="current">
-                        <a href="look.php">
-                            <i class="fas fa-search"></i>
-                                探す
-                        </a>
-                    </li>
-                    <li>
-                        <a href="good.php">
-                            <i class="fas fa-thumbs-up"></i>
-                                いいね 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="like.php">
-                            <i class="far fa-kiss-wink-heart"></i>
-                                趣味
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.php">
-                            <i class="fas fa-comments"></i>
-                                チャット
-                        </a>
-                        </li>
-                    <li >
-                        <a href="pro.php">
-                            <i class="fas fa-user-alt"></i>
-                                プロフィール
-                        </a>
-                    </li>
-                    <li><a href="#">その他</a>
-                    <ul id="ot">
-                        <li id="other">
-                            <a href="toi.php">
-                                <i class="fas fa-question-circle"></i>
-                                    お問い合わせ
-                            </a>
-                        </li>
-                        <li id="other">
-                            <a href="out.php">
-                                <i class="fas fa-sign-out"></i>
-                                    ログアウト
-                            </a>
-                        </li>
-                    </ul>
-                    </li>
-                </ul>
-            </nav>
-    </header>
 <!-- プロフィール変更 -->
-<div class="container" id="gallery">
+<div id="gallery">
+
 <!-- Button trigger modal -->
     <div class="main">
     <?php select1() ?>
@@ -502,7 +450,12 @@ try
                 </div>
             <form method="post" action="up-sub.php" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <input type="file" name="file0" accept="image/*">
+                    <label>
+                        <span class="input_images">
+                            画像を選択してください
+                        </span>
+                        <input type="file" class="input_file" name="file0" accept="image/*">
+                    </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -526,7 +479,7 @@ try
         ?>
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header ">
                         <h5 class="modal-title" id="exampleModalLabel"><?php echo "$i"; ?></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -534,7 +487,12 @@ try
                     </div>
                     <form method="post" action="up-sub.php" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <?php echo'<input type="file" name="file'.$i.'" accept="image/*">'; ?>
+                        <label>
+                            <span class="input_images">
+                                画像を選択してください
+                            </span>
+                            <?php echo'<input type="file" class="input_file" name="file'.$i.'" accept="image/*">'; ?>
+                        </label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -554,10 +512,8 @@ try
         </div>
     </div>
     <a class="check" href="pro.php">プロフィール確認</a>
-    
-
 </div>
-<script type="text/javascript" src="js/app.js"></script>
+<script src="js/app.js"></script>
 <?php
 }
 catch(PDOException $e) {

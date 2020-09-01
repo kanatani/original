@@ -1,3 +1,10 @@
+.container{
+  position: relative;
+  z-index: 1;
+  margin-top: -100px;
+  padding-top: 100px;
+}
+
 /* トップページ */
 .back-img {
   height: 700px;
@@ -83,20 +90,14 @@
   position: relative;
 }
 
-
 .insert_info {
   margin: 300px auto;
   text-align: center;
   width: 700px;
 }
 
-
-
-
 /* ログイン */
-.top_page {
-  margin-top: 50px;
-}
+
 
 .loguin_font {
   font-family: 'Raleway Dots', cursive;
@@ -138,8 +139,6 @@
 .return a:hover{
   opacity: 0.5;
 }
-
-
 
 /* ログイン完了 */
 .parent {
@@ -192,8 +191,6 @@
 
 
 /* プロフィール */
-
-
 #gallery {
     margin: auto;
     padding-right: 100px;
@@ -220,13 +217,16 @@
 }
 
 #gallery .thumb img {
-    border: 4px solid #fff;
     border-radius: 400px;
     box-shadow: 0px 0px 10px #000;
     height: 60px;
     margin: 10px;
     width: 60px;
     text-align: center;
+}
+
+.bord {
+  border: 4px solid #fff;
 }
 
 #option_image{
@@ -287,6 +287,26 @@
 #image {
   text-align: center;
 }
+
+.input_images {
+  color: skyblue;
+  border: 2px solid;
+  border-radius: 3em;
+  padding: 5px 5px;
+  display: inline-block;
+  transition: 0.7s;
+}
+
+.input_images:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.input_file {
+  display: none;
+}
+
+
 
 /* チャットルーム */
 #chat_room a{
@@ -387,6 +407,9 @@ li.right-side {
 }
 
 /* 一覧 */
+.looking_user {
+  position: relative;
+}
 
 .look_text {
   margin: auto;
@@ -421,21 +444,23 @@ li.right-side {
 }
 
 /* ナビ */
-header{
+header {
   width: 100%;
+  height: 70px;
 }
+
 #global_navi {
   clear: both;
-  overflow: hidden;
   width: 100%;
   background-color: skyblue;
   margin: auto;
   text-align: center;
+  position: fixed;
+  z-index: 20;
 }
 
 #global_navi ul {
   list-style: none;
-  
   margin: auto;
   text-align: center;
 }
@@ -474,7 +499,6 @@ header{
   display: none;
 }
 
-
 #ot #other a{
   text-align: left;
 }
@@ -510,6 +534,7 @@ tbody tr td {
 }
 
 /* 変更 */
+
 #in tbody{
   background: skyblue;
   border: 1px solid #ddd;
@@ -581,7 +606,16 @@ tbody tr td {
 }
 
 .submit {
-  margin-bottom: 30px;
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  border-radius: 23px;
+  margin-bottom: 40px;
+}
+
+.input-file {
+  cursor: pointer;
 }
 
 /* いいね機能 */
@@ -772,10 +806,7 @@ tbody tr td {
   width: 50%;
 }
 
-
-
 /* like検索画像一覧 */
-
 .car {
   width: 100%;
 }
@@ -801,12 +832,10 @@ tbody tr td {
   transition: 0.7s;
 }
 
-
 /* 検索 */
 
 #look {
   text-align: center;
-  
 }
 
 #input {

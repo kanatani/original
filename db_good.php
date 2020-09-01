@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function select($com_id,$hobby){
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
@@ -30,6 +31,8 @@ function select($com_id,$hobby){
 
     $user_id = $_POST['simei'];
     $card = $_POST['card'];
+    $category = $_POST['category'];
+    $types = $_POST['types'];
 
     $dsn = 'mysql:dbname=LAA1138637-db;host=mysql136.phy.lolipop.lan';
     $user = 'LAA1138637';
@@ -47,16 +50,10 @@ function select($com_id,$hobby){
     $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if(empty($rec)) {
-        
-        $sql = 'INSERT INTO `life_style`(`hobby_card`, `picture`, `com_id`, `category`, `types`,`like_count`) SELECT hobby_card, picture, :com_id, category, types, :like_count FROM life_style WHERE hobby_card = :hobby_card';
+        $sql = 'INSERT INTO life_style (hobby_card,picture,com_id,category,types,like_count) VALUES ("'.$card.'","'.$_SESSION['pic'].'","'.$user_id.'","'.$category.'","'.$types.'","1" )';
         $stmt = $dbh->prepare($sql);
-        $stmt->BindValue(':com_id',$user_id);
-        $stmt->BindValue(':like_count',1);
-        $stmt->BindValue(':hobby_card',$card);
         $stmt->execute();
         select($user_id,$card);
-        
-    
     }
 
     else {

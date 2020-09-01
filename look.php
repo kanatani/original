@@ -123,7 +123,7 @@ function select() {
         </nav>
     </header>
 <div class="container nav">
-<div class="">
+<div class="looking_user">
     <h2 class="look_text">Looking for friends.</h2>
 <?php
 select();

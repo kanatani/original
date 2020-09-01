@@ -35,7 +35,7 @@
                     <a href="top.php" class="start_connect">login</a>
                 </li>
                 <li>
-                    <a href="sinki.html" class="new_connect">sign up</a>
+                    <a href="sinki.php" class="new_connect">sign up</a>
                 </li>
             </ul>
         </nav>
@@ -80,7 +80,7 @@
         <ul>
             <li><a href="index.php">top</a></li>
             <li><a href="top.php">login</a></li>
-            <li><a href="sinki.html">sign up</a></li>
+            <li><a href="sinki.php">sign up</a></li>
         </ul>
     </div>
 
